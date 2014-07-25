@@ -10,8 +10,10 @@ namespace Analytics_Solution
     public class ProjectDB
     {
         List<SchemaTable> tables { get; set; }
+        List<String> simpleList { get; set; }
         public ProjectDB(List<String> list)
         {
+            this.simpleList = list;
             string thisTblName;
             string thisColName;
             this.tables = new List<SchemaTable>();
@@ -30,6 +32,29 @@ namespace Analytics_Solution
                 this.tables[this.tables.Count - 1].columns.Add(thisColName);
                 Debug.WriteLine("Added Column "+ thisColName +" to " +this.tables[this.tables.Count - 1].name);
             }
+        }
+
+        public List<String> getTableList() {
+            List<String> retVal = new List<String>();
+            foreach (SchemaTable t in this.tables) {
+                retVal.Add(t.name);
+            }
+
+            return retVal;
+        }
+
+        public List<String> getColumnListForTable(String table) {
+            List<String> retVal = new List<String>();
+
+            foreach(SchemaTable t in this.tables){
+                if (t.name == table) {
+                    foreach (String col in t.columns) {
+                        retVal.Add(col);
+                    }
+                }
+            }
+
+            return retVal;
         }
     }
 }
