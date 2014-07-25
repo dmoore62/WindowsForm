@@ -31,6 +31,9 @@
             this.components = new System.ComponentModel.Container();
             this.tabControlMain = new System.Windows.Forms.TabControl();
             this.tabPageSummary = new System.Windows.Forms.TabPage();
+            this.lblDbError = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.tbxDatabaseName = new System.Windows.Forms.TextBox();
             this.btnUpdate = new System.Windows.Forms.Button();
             this.groupBoxProjectObjs = new System.Windows.Forms.GroupBox();
             this.lblDashboardsVal = new System.Windows.Forms.Label();
@@ -71,10 +74,8 @@
             this.tabPageDataSets = new System.Windows.Forms.TabPage();
             this.tabPageDashboards = new System.Windows.Forms.TabPage();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
-            this.tbxDatabaseName = new System.Windows.Forms.TextBox();
             this.dlgDatabaseFile = new System.Windows.Forms.OpenFileDialog();
-            this.label1 = new System.Windows.Forms.Label();
-            this.lblDbError = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.tabControlMain.SuspendLayout();
             this.tabPageSummary.SuspendLayout();
             this.groupBoxProjectObjs.SuspendLayout();
@@ -96,7 +97,7 @@
             this.tabControlMain.Controls.Add(this.tabPageDashboards);
             this.tabControlMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControlMain.Location = new System.Drawing.Point(0, 0);
-            this.tabControlMain.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabControlMain.Margin = new System.Windows.Forms.Padding(2);
             this.tabControlMain.Name = "tabControlMain";
             this.tabControlMain.SelectedIndex = 0;
             this.tabControlMain.Size = new System.Drawing.Size(820, 425);
@@ -105,6 +106,7 @@
             // 
             // tabPageSummary
             // 
+            this.tabPageSummary.Controls.Add(this.label2);
             this.tabPageSummary.Controls.Add(this.lblDbError);
             this.tabPageSummary.Controls.Add(this.label1);
             this.tabPageSummary.Controls.Add(this.tbxDatabaseName);
@@ -114,18 +116,43 @@
             this.tabPageSummary.Controls.Add(this.btnExportDoc);
             this.tabPageSummary.Controls.Add(this.btnImportTables);
             this.tabPageSummary.Location = new System.Drawing.Point(4, 22);
-            this.tabPageSummary.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabPageSummary.Margin = new System.Windows.Forms.Padding(2);
             this.tabPageSummary.Name = "tabPageSummary";
-            this.tabPageSummary.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabPageSummary.Padding = new System.Windows.Forms.Padding(2);
             this.tabPageSummary.Size = new System.Drawing.Size(812, 399);
             this.tabPageSummary.TabIndex = 0;
             this.tabPageSummary.Text = "Summary";
             this.tabPageSummary.UseVisualStyleBackColor = true;
             // 
+            // lblDbError
+            // 
+            this.lblDbError.AutoSize = true;
+            this.lblDbError.ForeColor = System.Drawing.Color.Red;
+            this.lblDbError.Location = new System.Drawing.Point(516, 113);
+            this.lblDbError.Name = "lblDbError";
+            this.lblDbError.Size = new System.Drawing.Size(0, 13);
+            this.lblDbError.TabIndex = 8;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(376, 52);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(84, 13);
+            this.label1.TabIndex = 7;
+            this.label1.Text = "Database Name";
+            // 
+            // tbxDatabaseName
+            // 
+            this.tbxDatabaseName.Location = new System.Drawing.Point(376, 71);
+            this.tbxDatabaseName.Name = "tbxDatabaseName";
+            this.tbxDatabaseName.Size = new System.Drawing.Size(273, 20);
+            this.tbxDatabaseName.TabIndex = 6;
+            // 
             // btnUpdate
             // 
             this.btnUpdate.Location = new System.Drawing.Point(376, 201);
-            this.btnUpdate.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnUpdate.Margin = new System.Windows.Forms.Padding(2);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(134, 31);
             this.btnUpdate.TabIndex = 5;
@@ -154,9 +181,9 @@
             this.groupBoxProjectObjs.Controls.Add(this.lblFacts);
             this.groupBoxProjectObjs.Controls.Add(this.lblAttributes);
             this.groupBoxProjectObjs.Location = new System.Drawing.Point(39, 35);
-            this.groupBoxProjectObjs.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBoxProjectObjs.Margin = new System.Windows.Forms.Padding(2);
             this.groupBoxProjectObjs.Name = "groupBoxProjectObjs";
-            this.groupBoxProjectObjs.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBoxProjectObjs.Padding = new System.Windows.Forms.Padding(2);
             this.groupBoxProjectObjs.Size = new System.Drawing.Size(238, 322);
             this.groupBoxProjectObjs.TabIndex = 4;
             this.groupBoxProjectObjs.TabStop = false;
@@ -372,7 +399,7 @@
             // btnExportCRD
             // 
             this.btnExportCRD.Location = new System.Drawing.Point(376, 247);
-            this.btnExportCRD.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnExportCRD.Margin = new System.Windows.Forms.Padding(2);
             this.btnExportCRD.Name = "btnExportCRD";
             this.btnExportCRD.Size = new System.Drawing.Size(134, 34);
             this.btnExportCRD.TabIndex = 3;
@@ -382,7 +409,7 @@
             // btnExportDoc
             // 
             this.btnExportDoc.Location = new System.Drawing.Point(376, 150);
-            this.btnExportDoc.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnExportDoc.Margin = new System.Windows.Forms.Padding(2);
             this.btnExportDoc.Name = "btnExportDoc";
             this.btnExportDoc.Size = new System.Drawing.Size(134, 33);
             this.btnExportDoc.TabIndex = 2;
@@ -392,7 +419,7 @@
             // btnImportTables
             // 
             this.btnImportTables.Location = new System.Drawing.Point(376, 100);
-            this.btnImportTables.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnImportTables.Margin = new System.Windows.Forms.Padding(2);
             this.btnImportTables.Name = "btnImportTables";
             this.btnImportTables.Size = new System.Drawing.Size(134, 36);
             this.btnImportTables.TabIndex = 1;
@@ -405,9 +432,9 @@
             this.tabPageAttributes.Controls.Add(this.btnNewAttr);
             this.tabPageAttributes.Controls.Add(this.dataGridViewAttributes);
             this.tabPageAttributes.Location = new System.Drawing.Point(4, 22);
-            this.tabPageAttributes.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabPageAttributes.Margin = new System.Windows.Forms.Padding(2);
             this.tabPageAttributes.Name = "tabPageAttributes";
-            this.tabPageAttributes.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabPageAttributes.Padding = new System.Windows.Forms.Padding(2);
             this.tabPageAttributes.Size = new System.Drawing.Size(812, 399);
             this.tabPageAttributes.TabIndex = 1;
             this.tabPageAttributes.Text = "Attributes";
@@ -416,7 +443,7 @@
             // btnNewAttr
             // 
             this.btnNewAttr.Location = new System.Drawing.Point(479, 2);
-            this.btnNewAttr.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnNewAttr.Margin = new System.Windows.Forms.Padding(2);
             this.btnNewAttr.Name = "btnNewAttr";
             this.btnNewAttr.Size = new System.Drawing.Size(330, 34);
             this.btnNewAttr.TabIndex = 1;
@@ -436,7 +463,7 @@
             this.colAttrComments});
             this.dataGridViewAttributes.GridColor = System.Drawing.SystemColors.ButtonFace;
             this.dataGridViewAttributes.Location = new System.Drawing.Point(2, 41);
-            this.dataGridViewAttributes.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dataGridViewAttributes.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridViewAttributes.Name = "dataGridViewAttributes";
             this.dataGridViewAttributes.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.dataGridViewAttributes.RowHeadersVisible = false;
@@ -478,9 +505,9 @@
             // tabPageFacts
             // 
             this.tabPageFacts.Location = new System.Drawing.Point(4, 22);
-            this.tabPageFacts.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabPageFacts.Margin = new System.Windows.Forms.Padding(2);
             this.tabPageFacts.Name = "tabPageFacts";
-            this.tabPageFacts.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabPageFacts.Padding = new System.Windows.Forms.Padding(2);
             this.tabPageFacts.Size = new System.Drawing.Size(812, 399);
             this.tabPageFacts.TabIndex = 2;
             this.tabPageFacts.Text = "Facts";
@@ -489,9 +516,9 @@
             // tabPageHierarchies
             // 
             this.tabPageHierarchies.Location = new System.Drawing.Point(4, 22);
-            this.tabPageHierarchies.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabPageHierarchies.Margin = new System.Windows.Forms.Padding(2);
             this.tabPageHierarchies.Name = "tabPageHierarchies";
-            this.tabPageHierarchies.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabPageHierarchies.Padding = new System.Windows.Forms.Padding(2);
             this.tabPageHierarchies.Size = new System.Drawing.Size(812, 399);
             this.tabPageHierarchies.TabIndex = 3;
             this.tabPageHierarchies.Text = "Hierarchies";
@@ -500,9 +527,9 @@
             // tabPageFilters
             // 
             this.tabPageFilters.Location = new System.Drawing.Point(4, 22);
-            this.tabPageFilters.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabPageFilters.Margin = new System.Windows.Forms.Padding(2);
             this.tabPageFilters.Name = "tabPageFilters";
-            this.tabPageFilters.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabPageFilters.Padding = new System.Windows.Forms.Padding(2);
             this.tabPageFilters.Size = new System.Drawing.Size(812, 399);
             this.tabPageFilters.TabIndex = 4;
             this.tabPageFilters.Text = "Filters";
@@ -511,9 +538,9 @@
             // tabPagePrompts
             // 
             this.tabPagePrompts.Location = new System.Drawing.Point(4, 22);
-            this.tabPagePrompts.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabPagePrompts.Margin = new System.Windows.Forms.Padding(2);
             this.tabPagePrompts.Name = "tabPagePrompts";
-            this.tabPagePrompts.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabPagePrompts.Padding = new System.Windows.Forms.Padding(2);
             this.tabPagePrompts.Size = new System.Drawing.Size(812, 399);
             this.tabPagePrompts.TabIndex = 5;
             this.tabPagePrompts.Text = "Prompts";
@@ -522,9 +549,9 @@
             // tabPageMetrics
             // 
             this.tabPageMetrics.Location = new System.Drawing.Point(4, 22);
-            this.tabPageMetrics.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabPageMetrics.Margin = new System.Windows.Forms.Padding(2);
             this.tabPageMetrics.Name = "tabPageMetrics";
-            this.tabPageMetrics.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabPageMetrics.Padding = new System.Windows.Forms.Padding(2);
             this.tabPageMetrics.Size = new System.Drawing.Size(812, 399);
             this.tabPageMetrics.TabIndex = 6;
             this.tabPageMetrics.Text = "Metrics";
@@ -533,9 +560,9 @@
             // tabPageReports
             // 
             this.tabPageReports.Location = new System.Drawing.Point(4, 22);
-            this.tabPageReports.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabPageReports.Margin = new System.Windows.Forms.Padding(2);
             this.tabPageReports.Name = "tabPageReports";
-            this.tabPageReports.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabPageReports.Padding = new System.Windows.Forms.Padding(2);
             this.tabPageReports.Size = new System.Drawing.Size(812, 399);
             this.tabPageReports.TabIndex = 7;
             this.tabPageReports.Text = "Reports";
@@ -544,9 +571,9 @@
             // tabPageDataSets
             // 
             this.tabPageDataSets.Location = new System.Drawing.Point(4, 22);
-            this.tabPageDataSets.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabPageDataSets.Margin = new System.Windows.Forms.Padding(2);
             this.tabPageDataSets.Name = "tabPageDataSets";
-            this.tabPageDataSets.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabPageDataSets.Padding = new System.Windows.Forms.Padding(2);
             this.tabPageDataSets.Size = new System.Drawing.Size(812, 399);
             this.tabPageDataSets.TabIndex = 8;
             this.tabPageDataSets.Text = "Datasets";
@@ -555,9 +582,9 @@
             // tabPageDashboards
             // 
             this.tabPageDashboards.Location = new System.Drawing.Point(4, 22);
-            this.tabPageDashboards.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabPageDashboards.Margin = new System.Windows.Forms.Padding(2);
             this.tabPageDashboards.Name = "tabPageDashboards";
-            this.tabPageDashboards.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabPageDashboards.Padding = new System.Windows.Forms.Padding(2);
             this.tabPageDashboards.Size = new System.Drawing.Size(812, 399);
             this.tabPageDashboards.TabIndex = 9;
             this.tabPageDashboards.Text = "Dashboards";
@@ -569,34 +596,17 @@
             this.imageList1.ImageSize = new System.Drawing.Size(16, 16);
             this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
             // 
-            // tbxDatabaseName
-            // 
-            this.tbxDatabaseName.Location = new System.Drawing.Point(376, 71);
-            this.tbxDatabaseName.Name = "tbxDatabaseName";
-            this.tbxDatabaseName.Size = new System.Drawing.Size(273, 20);
-            this.tbxDatabaseName.TabIndex = 6;
-            // 
             // dlgDatabaseFile
             // 
             this.dlgDatabaseFile.FileName = "databaseFile";
             // 
-            // label1
+            // label2
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(376, 52);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(84, 13);
-            this.label1.TabIndex = 7;
-            this.label1.Text = "Database Name";
-            // 
-            // lblDbError
-            // 
-            this.lblDbError.AutoSize = true;
-            this.lblDbError.ForeColor = System.Drawing.Color.Red;
-            this.lblDbError.Location = new System.Drawing.Point(516, 113);
-            this.lblDbError.Name = "lblDbError";
-            this.lblDbError.Size = new System.Drawing.Size(0, 13);
-            this.lblDbError.TabIndex = 8;
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(516, 113);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(0, 13);
+            this.label2.TabIndex = 9;
             // 
             // Form1
             // 
@@ -604,7 +614,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(820, 425);
             this.Controls.Add(this.tabControlMain);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Form1";
             this.Text = "Analytics Solutions";
             this.tabControlMain.ResumeLayout(false);
@@ -667,6 +677,7 @@
         private System.Windows.Forms.OpenFileDialog dlgDatabaseFile;
         private System.Windows.Forms.Label lblDbError;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
     }
 }
 

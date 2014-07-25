@@ -15,6 +15,7 @@ namespace Analytics_Solution
 {
     public partial class Form1 : Form
     {
+        public ProjectDB projectDb;
         public List<String> dataSchema = new List<string>();
         public XmlWriter writer;
         public Form1()
@@ -87,7 +88,7 @@ namespace Analytics_Solution
                         while (reader.Read()) {
                             descStr = reader["TABLE_NAME"]+"."+reader["COLUMN_NAME"];
                             dataSchema.Add(descStr);
-                            Debug.WriteLine(descStr);
+                            //Debug.WriteLine(descStr);
                         }
                     }
                 }
@@ -97,6 +98,12 @@ namespace Analytics_Solution
                 }
                 finally {
                     con.Close();
+                }
+                if (dataSchema.Count > 0)
+                {
+                    lblDbError.ForeColor = Color.Green;
+                    lblDbError.Text = "Schema Uploaded";
+                    projectDb = new ProjectDB(dataSchema);
                 }
             }
         }
