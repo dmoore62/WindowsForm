@@ -56,5 +56,9 @@ namespace Analytics_Solution
 
             return retVal;
         }
+
+        public List<String> getSimpleList() {
+            return this.simpleList;
+        }
     }
 }

@@ -14,10 +14,44 @@ namespace Analytics_Solution
     public partial class Form2 : Form
     {
         Form1 formRef = null;
+        DataGridView expressions;
         public Form2(Form1 mainForm)
         {
             formRef = mainForm;
             InitializeComponent();
+            
+            //setup combo boxes
+            expressions = (DataGridView)this.dataGridViewExpressions;
+            DataGridViewComboBoxColumn columnBox = (DataGridViewComboBoxColumn)colExpColumn;
+            columnBox.DataSource = formRef.projectDb.getSimpleList();
+
+            DataGridViewComboBoxColumn rowBox = (DataGridViewComboBoxColumn)colExpTable;
+            rowBox.DataSource = formRef.projectDb.getTableList();
+            expressions.EditingControlShowing += new DataGridViewEditingControlShowingEventHandler(expression_EditingControlShowing);
+            
+        }
+
+        private void expression_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
+        {
+            if (expressions.CurrentCell.ColumnIndex == 2 && e.Control is ComboBox) 
+            {
+                ComboBox comboBox = e.Control as ComboBox;
+                comboBox.SelectedIndexChanged += UpdateColumnCells;
+            }
+        }
+
+        private void UpdateColumnCells(object sender, EventArgs e) {
+            var curCell = expressions.CurrentCellAddress;
+            if (curCell.X == 2)
+            {
+                Debug.WriteLine("Changed");
+                var sendingCB = sender as DataGridViewComboBoxEditingControl;
+                DataGridViewComboBoxCell cel = (DataGridViewComboBoxCell)expressions.Rows[curCell.Y].Cells[curCell.X];
+                DataGridViewComboBoxCell prevCel = (DataGridViewComboBoxCell)expressions.Rows[curCell.Y].Cells[curCell.X - 1];
+                var tblName = sendingCB.EditingControlFormattedValue.ToString();
+                var list = formRef.projectDb.getColumnListForTable(tblName);
+                prevCel.DataSource = list;
+            }
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -55,6 +89,11 @@ namespace Analytics_Solution
                 formRef.addToTable(ar);
                 this.Close();
             }
+        }
+
+        private void dataGridViewExpressions_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
 
     }
