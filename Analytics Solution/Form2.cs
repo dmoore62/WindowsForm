@@ -93,7 +93,7 @@ namespace Analytics_Solution
 
         private void dataGridViewExpressions_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-
+            Debug.WriteLine("dumb click call back");
         }
 
     }
