@@ -27,8 +27,13 @@ namespace Analytics_Solution
 
             DataGridViewComboBoxColumn rowBox = (DataGridViewComboBoxColumn)colExpTable;
             rowBox.DataSource = formRef.projectDb.getTableList();
-            expressions.EditingControlShowing += new DataGridViewEditingControlShowingEventHandler(expression_EditingControlShowing);
-            
+            try
+            {
+                expressions.EditingControlShowing += new DataGridViewEditingControlShowingEventHandler(expression_EditingControlShowing);
+            }
+            catch (Exception ex) {
+                Debug.WriteLine(ex.Message);
+            }
         }
 
         private void expression_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
@@ -42,15 +47,21 @@ namespace Analytics_Solution
 
         private void UpdateColumnCells(object sender, EventArgs e) {
             var curCell = expressions.CurrentCellAddress;
-            if (curCell.X == 2)
+            try
             {
-                Debug.WriteLine("Changed");
-                var sendingCB = sender as DataGridViewComboBoxEditingControl;
-                DataGridViewComboBoxCell cel = (DataGridViewComboBoxCell)expressions.Rows[curCell.Y].Cells[curCell.X];
-                DataGridViewComboBoxCell prevCel = (DataGridViewComboBoxCell)expressions.Rows[curCell.Y].Cells[curCell.X - 1];
-                var tblName = sendingCB.EditingControlFormattedValue.ToString();
-                var list = formRef.projectDb.getColumnListForTable(tblName);
-                prevCel.DataSource = list;
+                if (curCell.X == 2)
+                {
+                    Debug.WriteLine("Changed");
+                    var sendingCB = sender as DataGridViewComboBoxEditingControl;
+                    DataGridViewComboBoxCell cel = (DataGridViewComboBoxCell)expressions.Rows[curCell.Y].Cells[curCell.X];
+                    DataGridViewComboBoxCell prevCel = (DataGridViewComboBoxCell)expressions.Rows[curCell.Y].Cells[curCell.X - 1];
+                    var tblName = sendingCB.EditingControlFormattedValue.ToString();
+                    var list = formRef.projectDb.getColumnListForTable(tblName);
+                    prevCel.DataSource = list;
+                }
+            }
+            catch (Exception ex) {
+                Debug.WriteLine(ex.Message);
             }
         }
 
