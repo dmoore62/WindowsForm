@@ -51,7 +51,7 @@ namespace Analytics_Solution
             {
                 if (curCell.X == 2)
                 {
-                    Debug.WriteLine("Changed");
+                    Debug.WriteLine("Changed by Dan");
                     var sendingCB = sender as DataGridViewComboBoxEditingControl;
                     DataGridViewComboBoxCell cel = (DataGridViewComboBoxCell)expressions.Rows[curCell.Y].Cells[curCell.X];
                     DataGridViewComboBoxCell prevCel = (DataGridViewComboBoxCell)expressions.Rows[curCell.Y].Cells[curCell.X - 1];
