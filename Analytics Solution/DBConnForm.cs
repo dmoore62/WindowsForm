@@ -14,8 +14,10 @@ namespace Analytics_Solution
 {
     public partial class DBConnForm : Form
     {
-        public DBConnForm()
+        Form1 formRef;
+        public DBConnForm(Form1 mainForm)
         {
+            formRef = mainForm;
             InitializeComponent();
             try
             {
@@ -59,6 +61,14 @@ namespace Analytics_Solution
                 conn.Close();
                 Cursor.Current = Cursors.Arrow;
             }
+        }
+
+        private void btnConnOpen_Click(object sender, EventArgs e)
+        {
+            TextBox input = (TextBox)this.tbxConnInput;
+            String conStr = "Data Source=" + input.Text + ";Integrated Security=True;Connect Timeout=10";
+            this.formRef.WriteConStr = conStr;
+            this.Close();
         }
     }
 }

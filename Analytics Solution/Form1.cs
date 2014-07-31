@@ -18,6 +18,7 @@ namespace Analytics_Solution
         public ProjectDB projectDb;
         public List<String> dataSchema = new List<string>();
         public XmlWriter writer;
+        public String WriteConStr;
         public Form1()
         {
             InitializeComponent();
@@ -116,7 +117,7 @@ namespace Analytics_Solution
         private void BtnCreateDataBase_Click(object sender, EventArgs e)
         {
             Debug.WriteLine("Clicked");
-            DBConnForm inputform = new DBConnForm();
+            DBConnForm inputform = new DBConnForm(this);
             inputform.Show();
         }
     }

@@ -28,21 +28,22 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnConnOpen = new System.Windows.Forms.Button();
             this.lblConnections = new System.Windows.Forms.Label();
             this.tbxConnInput = new System.Windows.Forms.TextBox();
             this.btnConnTest = new System.Windows.Forms.Button();
             this.lblStatus = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // button1
+            // btnConnOpen
             // 
-            this.button1.Location = new System.Drawing.Point(461, 61);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(157, 34);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "Open Connection";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnConnOpen.Location = new System.Drawing.Point(461, 61);
+            this.btnConnOpen.Name = "btnConnOpen";
+            this.btnConnOpen.Size = new System.Drawing.Size(157, 34);
+            this.btnConnOpen.TabIndex = 0;
+            this.btnConnOpen.Text = "Open Connection";
+            this.btnConnOpen.UseVisualStyleBackColor = true;
+            this.btnConnOpen.Click += new System.EventHandler(this.btnConnOpen_Click);
             // 
             // lblConnections
             // 
@@ -88,7 +89,7 @@
             this.Controls.Add(this.btnConnTest);
             this.Controls.Add(this.tbxConnInput);
             this.Controls.Add(this.lblConnections);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnConnOpen);
             this.Name = "DBConnForm";
             this.Text = "DBConnForm";
             this.ResumeLayout(false);
@@ -98,7 +99,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnConnOpen;
         private System.Windows.Forms.Label lblConnections;
         private System.Windows.Forms.TextBox tbxConnInput;
         private System.Windows.Forms.Button btnConnTest;
