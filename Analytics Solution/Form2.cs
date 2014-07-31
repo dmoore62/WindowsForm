@@ -19,7 +19,7 @@ namespace Analytics_Solution
         {
             formRef = mainForm;
             InitializeComponent();
-            
+
             //setup combo boxes
             expressions = (DataGridView)this.dataGridViewExpressions;
             DataGridViewComboBoxColumn columnBox = (DataGridViewComboBoxColumn)colExpColumn;
