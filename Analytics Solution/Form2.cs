@@ -30,6 +30,7 @@ namespace Analytics_Solution
             try
             {
                 expressions.EditingControlShowing += new DataGridViewEditingControlShowingEventHandler(expression_EditingControlShowing);
+                expressions.DataError += new DataGridViewDataErrorEventHandler(expression_DataErrorHandler);
             }
             catch (Exception ex) {
                 Debug.WriteLine(ex.Message);
@@ -52,7 +53,7 @@ namespace Analytics_Solution
                 if (curCell.X == 2)
                 {
 
-                    Debug.WriteLine("Changed By Alex");
+                    Debug.WriteLine("Changed");
 
                     var sendingCB = sender as DataGridViewComboBoxEditingControl;
                     DataGridViewComboBoxCell cel = (DataGridViewComboBoxCell)expressions.Rows[curCell.Y].Cells[curCell.X];
@@ -65,6 +66,10 @@ namespace Analytics_Solution
             catch (Exception ex) {
                 Debug.WriteLine(ex.Message);
             }
+        }
+
+        private void expression_DataErrorHandler(object sender, DataGridViewDataErrorEventArgs e) {
+            Debug.WriteLine("HERE!!");
         }
 
         private void label1_Click(object sender, EventArgs e)
