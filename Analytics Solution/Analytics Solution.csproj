@@ -51,6 +51,7 @@
     <Compile Include="DBConnForm.Designer.cs">
       <DependentUpon>DBConnForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="DbHelper.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
