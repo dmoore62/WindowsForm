@@ -18,7 +18,15 @@ namespace Analytics_Solution
         public DBConnForm(Form1 mainForm)
         {
             formRef = mainForm;
+            
             InitializeComponent();
+
+            TextBox input = (TextBox)this.tbxConnInput;
+            Debug.WriteLine(this.formRef.WriteConnection);
+            if (this.formRef.WriteConnection != null)
+            {
+                input.Text = this.formRef.WriteConnection;
+            }
             try
             {
                 DbHelper db = new DbHelper();
@@ -68,6 +76,7 @@ namespace Analytics_Solution
             TextBox input = (TextBox)this.tbxConnInput;
             String conStr = "Data Source=" + input.Text + ";Integrated Security=True;Connect Timeout=10";
             this.formRef.WriteConStr = conStr;
+            this.formRef.WriteConnection = input.Text;
             if (this.formRef.checkForDB())
             {
                 Debug.WriteLine("EXISTS!");
