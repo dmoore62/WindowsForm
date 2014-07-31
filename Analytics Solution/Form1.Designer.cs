@@ -602,7 +602,7 @@
             this.BtnCreateDataBase.Name = "BtnCreateDataBase";
             this.BtnCreateDataBase.Size = new System.Drawing.Size(173, 41);
             this.BtnCreateDataBase.TabIndex = 10;
-            this.BtnCreateDataBase.Text = "Create Database";
+            this.BtnCreateDataBase.Text = "Connect To Database";
             this.BtnCreateDataBase.UseVisualStyleBackColor = true;
             this.BtnCreateDataBase.Click += new System.EventHandler(this.BtnCreateDataBase_Click);
             // 

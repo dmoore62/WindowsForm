@@ -19,6 +19,7 @@ namespace Analytics_Solution
         public List<String> dataSchema = new List<string>();
         public XmlWriter writer;
         public String WriteConStr;
+        public String WriteConnection;
         public Form1()
         {
             InitializeComponent();
@@ -114,7 +115,6 @@ namespace Analytics_Solution
             String DBname = "pandera_metadata";
             String conStr = this.WriteConStr;
             SqlConnection conn = new SqlConnection(conStr);
-            SqlDataReader reader;
 
             try {
                 conn.Open();
