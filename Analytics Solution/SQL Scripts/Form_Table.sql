@@ -6,9 +6,9 @@
 	col VARCHAR(50) not null,
 	tabl VARCHAR(50) not null,
 	created DATETIME not null,
-	CONSTRAINT pk_id PRIMARY KEY (id),
-	CONSTRAINT unique_name UNIQUE (name),
-	CONSTRAINT fk_a_id FOREIGN KEY (a_id)
+	CONSTRAINT form_pk_id PRIMARY KEY (id),
+	CONSTRAINT form_unique_name UNIQUE (name),
+	CONSTRAINT form_fk_a_id FOREIGN KEY (a_id)
 		REFERENCES attribute (id)
 
 );

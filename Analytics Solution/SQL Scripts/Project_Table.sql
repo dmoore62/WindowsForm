@@ -4,6 +4,6 @@
 	name VARCHAR(50) not null,
 	created DATETIME not null,
 	DB_File TEXT not null,
-	CONSTRAINT pk_id PRIMARY KEY (id),
-	CONSTRAINT unique_name UNIQUE (name)
+	CONSTRAINT project_pk_id PRIMARY KEY (id),
+	CONSTRAINT project_unique_name UNIQUE (name)
 );

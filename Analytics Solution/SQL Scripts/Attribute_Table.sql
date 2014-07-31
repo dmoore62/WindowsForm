@@ -5,9 +5,9 @@
 	descr TEXT not null,
 	pid INT not null,
 	created DATETIME not null,
-	CONSTRAINT pk_id PRIMARY KEY (id),
-	CONSTRAINT unique_name UNIQUE (name),
-	CONSTRAINT fk_pid FOREIGN KEY (pid)
+	CONSTRAINT attr_pk_id PRIMARY KEY (id),
+	CONSTRAINT attr_unique_name UNIQUE (name),
+	CONSTRAINT attr_fk_pid FOREIGN KEY (pid)
 		REFERENCES project (id)
 
 );
