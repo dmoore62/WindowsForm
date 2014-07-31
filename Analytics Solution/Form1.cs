@@ -107,5 +107,15 @@ namespace Analytics_Solution
                 }
             }
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void BtnCreateDataBase_Click(object sender, EventArgs e)
+        {
+            Debug.WriteLine("Clicked");
+        }
     }
 }

@@ -45,6 +45,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AttributeRow.cs" />
+    <Compile Include="DBConnForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DBConnForm.Designer.cs">
+      <DependentUpon>DBConnForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
