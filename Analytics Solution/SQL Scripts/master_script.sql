@@ -1,9 +1,4 @@
-﻿IF EXISTS(select * from sys.databases where name = 'pandera_metadata')
-DROP DATABASE pandera_metadata
-
-CREATE DATABASE pandera_metadata
-
-USE pandera_metadata
+﻿CREATE DATABASE pandera_metadata
 
 CREATE TABLE project(
 	

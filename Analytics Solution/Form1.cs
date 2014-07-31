@@ -11,6 +11,7 @@ using System.Diagnostics;
 using System.Xml;
 using System.Data.SqlClient;
 using System.IO;
+using Analytics_Solution.Properties;
 
 namespace Analytics_Solution
 {
@@ -150,19 +151,25 @@ namespace Analytics_Solution
                 String file_location = Directory.GetCurrentDirectory();
                 file_location += "\\..\\..\\SQL Scripts\\Master_Spript.sql";
 
-                sb = new StringBuilder();
+                String sql = Resources.master_script;
 
-                using (StreamReader sr = new StreamReader(file_location))
-                {
-                    string line;
-                    while ((line = sr.ReadLine()) != null)
-                    {
-                        sb.AppendLine(line);
-                    }
-                }
-                Debug.WriteLine(sb.ToString());                
+                //sb = new StringBuilder();
+
+                //using (StreamReader sr = new StreamReader(Resources.master_script))
+                //{
+                //    string line;
+                //    while ((line = sr.ReadLine()) != null)
+                //    {
+                //        sb.AppendLine(line);
+                //    }
+                //}
+                Debug.WriteLine(sql);
+
+                SqlCommand cmd = new SqlCommand(sql, conn);
+
+                cmd.ExecuteNonQuery();
                 
-                //this.WriteConStr = conStr += ";database=pandera_metadata";
+                this.WriteConStr = conStr += ";database=pandera_metadata";
             }
             catch (Exception ex) {
                 throw new Exception("DB Create Problems: "+ ex.Message);
