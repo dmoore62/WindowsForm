@@ -116,6 +116,8 @@ namespace Analytics_Solution
         private void BtnCreateDataBase_Click(object sender, EventArgs e)
         {
             Debug.WriteLine("Clicked");
+            DBConnForm inputform = new DBConnForm();
+            inputform.Show();
         }
     }
 }
