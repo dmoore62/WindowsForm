@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using System.Diagnostics;
 using System.Xml;
 using System.Data.SqlClient;
+using System.IO;
 
 namespace Analytics_Solution
 {
@@ -137,6 +138,38 @@ namespace Analytics_Solution
             }
 
             return is_there;
+        }
+
+        public void createDB() {
+            String conStr = this.WriteConStr;
+            SqlConnection conn = new SqlConnection(conStr);
+
+            try {
+                conn.Open();
+                StringBuilder sb = new StringBuilder();
+                String file_location = Directory.GetCurrentDirectory();
+                file_location += "\\..\\..\\SQL Scripts\\Master_Spript.sql";
+
+                sb = new StringBuilder();
+
+                using (StreamReader sr = new StreamReader(file_location))
+                {
+                    string line;
+                    while ((line = sr.ReadLine()) != null)
+                    {
+                        sb.AppendLine(line);
+                    }
+                }
+                Debug.WriteLine(sb.ToString());                
+                
+                //this.WriteConStr = conStr += ";database=pandera_metadata";
+            }
+            catch (Exception ex) {
+                throw new Exception("DB Create Problems: "+ ex.Message);
+            }
+            finally {
+                conn.Close();
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)

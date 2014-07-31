@@ -80,9 +80,12 @@ namespace Analytics_Solution
             if (this.formRef.checkForDB())
             {
                 Debug.WriteLine("EXISTS!");
+                
+                //this.formRef.WriteConStr = conStr += ";database=pandera_metadata";
             }
             else {
                 Debug.WriteLine("Nope!");
+                this.formRef.createDB();
             }
             this.Close();
         }
