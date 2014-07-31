@@ -109,6 +109,36 @@ namespace Analytics_Solution
             }
         }
 
+        public bool checkForDB() {
+            bool is_there = false;
+            String DBname = "pandera_metadata";
+            String conStr = this.WriteConStr;
+            SqlConnection conn = new SqlConnection(conStr);
+            SqlDataReader reader;
+
+            try {
+                conn.Open();
+
+                String sql = "SELECT COUNT(*) FROM sys.sysdatabases WHERE name = @dbname";
+                SqlCommand cmd = new SqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@dbname", DBname);
+
+                int results = (int)cmd.ExecuteScalar();
+
+                if (results > 0) {
+                    is_there = true;
+                }
+            }
+            catch (Exception ex) {
+                throw new Exception("DB problems: " + ex.Message);
+            }
+            finally {
+                conn.Close();
+            }
+
+            return is_there;
+        }
+
         private void button1_Click(object sender, EventArgs e)
         {
 

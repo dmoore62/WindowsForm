@@ -68,6 +68,13 @@ namespace Analytics_Solution
             TextBox input = (TextBox)this.tbxConnInput;
             String conStr = "Data Source=" + input.Text + ";Integrated Security=True;Connect Timeout=10";
             this.formRef.WriteConStr = conStr;
+            if (this.formRef.checkForDB())
+            {
+                Debug.WriteLine("EXISTS!");
+            }
+            else {
+                Debug.WriteLine("Nope!");
+            }
             this.Close();
         }
     }
