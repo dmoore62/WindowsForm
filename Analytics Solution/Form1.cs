@@ -61,21 +61,23 @@ namespace Analytics_Solution
         private void btnUpdate_Click(object sender, EventArgs e)
         {
             SqlDBhelper db = new SqlDBhelper();
-            if (db.testConnection()) {
+            if (db.testConnection())
+            {
                 Debug.WriteLine("Yep");
                 if (db.isEmpty())
                 {
                     Debug.WriteLine("Empty");
+                    db.Insert_Table();
                 }
-                else {
+                else
+                {
                     Debug.WriteLine("Not Empty");
                 }
-            } else {
+            }
+            else
+            {
                 Debug.WriteLine("Nope");
             }
-
-            db.Insert_Table();
-
         }
 
         private void btnImportTables_Click(object sender, EventArgs e)

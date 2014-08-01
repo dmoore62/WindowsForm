@@ -22,14 +22,14 @@ namespace Analytics_Solution
             bool isConnected = false;
 
             try {
-                this.conn.Open();
+                conn.Open();
                 isConnected = true;
             }
             catch (Exception ex) {
                 Debug.WriteLine(ex.Message);
             }
             finally {
-                this.conn.Close();
+                conn.Close();
             }
 
             return isConnected;
@@ -39,7 +39,7 @@ namespace Analytics_Solution
         {
             try
             {
-                this.conn.Open();
+                conn.Open();
                 string sql = "CREATE TABLE test (id int, name text)";
 
                 SQLiteCommand command = new SQLiteCommand(sql, conn);
@@ -57,12 +57,8 @@ namespace Analytics_Solution
             }
             finally
             {
-                this.conn.Close();
+                conn.Close();
             }
-
-
-
-
         }
 
         public bool isEmpty() {
@@ -71,11 +67,11 @@ namespace Analytics_Solution
 
             try
             {
-                this.conn.Open();
+                conn.Open();
                 String sql = "SELECT COUNT(*) FROM sqlite_master WHERE type='table'";
                 SQLiteCommand cmd = new SQLiteCommand(sql, this.conn);
 
-                results = (int)cmd.ExecuteScalar();
+                results = Convert.ToInt32(cmd.ExecuteScalar());
                 if (results > 0)
                 {
                     isEmpty = false;
@@ -89,7 +85,7 @@ namespace Analytics_Solution
                 isEmpty = true;
             }
             finally {
-                this.conn.Close();
+                conn.Close();
             }
 
             return isEmpty;
