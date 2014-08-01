@@ -11,6 +11,7 @@ using System.Diagnostics;
 using System.Xml;
 using System.Data.SqlClient;
 using System.IO;
+using System.Data.SQLite;
 using Analytics_Solution.Properties;
 
 namespace Analytics_Solution
@@ -59,8 +60,12 @@ namespace Analytics_Solution
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
-            Debug.WriteLine("Ending DOC");
-            this.writer.WriteEndDocument();
+            SqliteHelper db = new SqliteHelper();
+            if (db.testConnection()) {
+                Debug.WriteLine("Yep");
+            } else {
+                Debug.WriteLine("Nope");
+            }
         }
 
         private void btnImportTables_Click(object sender, EventArgs e)
@@ -147,9 +152,6 @@ namespace Analytics_Solution
 
             try {
                 conn.Open();
-                StringBuilder sb = new StringBuilder();
-                String file_location = Directory.GetCurrentDirectory();
-                file_location += "\\..\\..\\SQL Scripts\\Master_Spript.sql";
 
                 String sql = Resources.master_script;
 
