@@ -63,6 +63,13 @@ namespace Analytics_Solution
             SqlDBhelper db = new SqlDBhelper();
             if (db.testConnection()) {
                 Debug.WriteLine("Yep");
+                if (db.isEmpty())
+                {
+                    Debug.WriteLine("Empty");
+                }
+                else {
+                    Debug.WriteLine("Not Empty");
+                }
             } else {
                 Debug.WriteLine("Nope");
             }
