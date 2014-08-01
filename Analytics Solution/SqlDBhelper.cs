@@ -65,7 +65,34 @@ namespace Analytics_Solution
 
         }
 
+        public bool isEmpty() {
+            bool isEmpty;
+            int results;
 
+            try
+            {
+                this.conn.Open();
+                String sql = "SELECT COUNT(*) FROM sqlite_master WHERE type='table'";
+                SQLiteCommand cmd = new SQLiteCommand(sql, this.conn);
 
+                results = (int)cmd.ExecuteScalar();
+                if (results > 0)
+                {
+                    isEmpty = false;
+                }
+                else {
+                    isEmpty = true;
+                }
+            }
+            catch (Exception ex) {
+                Debug.WriteLine("DB Problems: " + ex.Message);
+                isEmpty = true;
+            }
+            finally {
+                this.conn.Close();
+            }
+
+            return isEmpty;
+        }
     }
 }
