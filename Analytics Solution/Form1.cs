@@ -60,7 +60,7 @@ namespace Analytics_Solution
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
-            SqliteHelper db = new SqliteHelper();
+            SqlDBhelper db = new SqlDBhelper();
             if (db.testConnection()) {
                 Debug.WriteLine("Yep");
             } else {
