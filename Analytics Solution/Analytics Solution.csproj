@@ -121,7 +121,9 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="AppData\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="SQL Scripts\master_script.sql" />
     <Content Include="x64\SQLite.Interop.dll">

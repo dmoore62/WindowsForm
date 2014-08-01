@@ -13,7 +13,7 @@ namespace Analytics_Solution
         SQLiteConnection conn;
 
         public SqlDBhelper() {
-            SQLiteConnection.CreateFile("pandera_metadata.sqlite");
+            SQLiteConnection.CreateFile("../../AppData/pandera_metadata.sqlite");
 
             conn = new SQLiteConnection("Data Source=pandera_metadata.sqlite;Version=3;");
         }
