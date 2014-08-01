@@ -34,5 +34,38 @@ namespace Analytics_Solution
 
             return isConnected;
         }
+
+        public void Insert_Table()
+        {
+            try
+            {
+                this.conn.Open();
+                string sql = "CREATE TABLE test (id int, name text)";
+
+                SQLiteCommand command = new SQLiteCommand(sql, conn);
+                command.ExecuteNonQuery();
+
+                sql = "INSERT INTO test (id, name) values (1, 'alex')";
+                SQLiteCommand cmd = new SQLiteCommand(sql, conn);
+                cmd.ExecuteNonQuery();
+
+            }
+
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+            }
+            finally
+            {
+                this.conn.Close();
+            }
+
+
+
+
+        }
+
+
+
     }
 }

@@ -66,6 +66,9 @@ namespace Analytics_Solution
             } else {
                 Debug.WriteLine("Nope");
             }
+
+            db.Insert_Table();
+
         }
 
         private void btnImportTables_Click(object sender, EventArgs e)
