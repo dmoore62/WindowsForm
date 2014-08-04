@@ -21,6 +21,7 @@ namespace Analytics_Solution
         public ProjectDB projectDb;
         public List<String> dataSchema = new List<string>();
         public XmlWriter writer;
+        public String OriginalConnection;
         public String WriteConStr;
         public String WriteConnection;
         public String projectName;
@@ -31,6 +32,15 @@ namespace Analytics_Solution
             Debug.WriteLine("Starting XML");
             this.writer = XmlWriter.Create("test.xml");
             this.writer.WriteStartDocument();
+            this.FormClosing += Form1_FormClosing;
+        }
+
+        private void Form1_FormClosing(object sender, System.ComponentModel.CancelEventArgs e) {
+            Debug.WriteLine("Closing");
+            if (this.OriginalConnection != "" && this.WriteConnection.EndsWith("pandera_metadata.sqlite")) {
+                File.Delete(this.WriteConnection);
+                Debug.WriteLine("File Deleted");
+            }
         }
 
         private void btnNewAttr_Click(object sender, EventArgs e)
@@ -297,6 +307,7 @@ namespace Analytics_Solution
                     this.WriteConStr = "data source=" + dlgDatabaseFile.FileName;
                     //reverse engineer projectDB object from datasource table
                     populateProjectDB();
+                    createWorkingCopy();
                 }
                 else {
                     ErrorForm ef = new ErrorForm("Error on Import", "An invalid file type was selected");
@@ -341,6 +352,18 @@ namespace Analytics_Solution
             Label lblImport = (Label)this.lblImportStatus;
             lblImport.ForeColor = Color.Green;
             lblImport.Text = "Imported - " + this.WriteConnection;
+        }
+
+        private void createWorkingCopy() { 
+            //create file in reference directory
+            this.OriginalConnection = this.WriteConnection;
+            int index = this.WriteConnection.LastIndexOf('\\');
+            String docRoot = this.WriteConnection.Substring(0, index + 1);
+            this.WriteConnection = docRoot + "pandera_metadata.sqlite";
+            this.WriteConStr = "data source=" + this.WriteConnection;
+
+            File.Copy(this.OriginalConnection, this.WriteConnection, true);
+            Debug.WriteLine("File Copied");
         }
     }
 }
