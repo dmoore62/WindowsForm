@@ -143,6 +143,28 @@ namespace Analytics_Solution
 
                         insert_id = Convert.ToInt32(cmd.ExecuteScalar());
                         Debug.WriteLine(insert_id);
+
+                        //insert all form data
+                        DataGridView table = form.dataGridViewExpressions;
+                        sql = "INSERT INTO form (a_id, name, col, tabl, created) VALUES (@a_id, @name, @col, @tabl, @created)";
+                        cmd.CommandText = sql;
+                        String colName;
+                        String tblName;
+                        DataGridViewRow row;
+                        for (int i = 0; i < ar.num_forms; ++i )
+                        {
+                            row = table.Rows[i];
+                            cmd.Parameters.AddWithValue("@a_id", insert_id);
+                            cmd.Parameters.AddWithValue("@name", row.Cells[0].Value);
+                            colName = Convert.ToString((row.Cells[1] as DataGridViewComboBoxCell).EditedFormattedValue.ToString());
+                            cmd.Parameters.AddWithValue("@col", colName);
+                            tblName = Convert.ToString((row.Cells[2] as DataGridViewComboBoxCell).EditedFormattedValue.ToString());
+                            cmd.Parameters.AddWithValue("@tabl", tblName);
+                            cmd.Parameters.AddWithValue("@created", now);
+
+                            cmd.ExecuteNonQuery();                            
+                        }
+                        
                     }
                     catch (Exception ex) {
                         throw new Exception("Error Inserting Attribute: " + ex.Message);
