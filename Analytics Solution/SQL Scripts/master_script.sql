@@ -1,4 +1,4 @@
-﻿CREATE DATABASE pandera_metadata
+﻿ CREATE DATABASE pandera_metadata
 
 CREATE TABLE project(
 	
