@@ -11,7 +11,7 @@ namespace Analytics_Solution
     class SqlDBhelper
     {
         SQLiteConnection conn;
-
+       
         public SqlDBhelper() {
             SQLiteConnection.CreateFile("../../AppData/pandera_metadata.sqlite");
 
@@ -48,7 +48,7 @@ namespace Analytics_Solution
                 SQLiteCommand command = new SQLiteCommand(sql, conn);
                 command.ExecuteNonQuery();
 
-                sql = "INSERT INTO test2 (id, name) values (1, 'alex')";
+                sql = "INSERT INTO test (id, name) values (1, 'alex')";
                 SQLiteCommand cmd = new SQLiteCommand(sql, conn);
                 cmd.ExecuteNonQuery();
 
