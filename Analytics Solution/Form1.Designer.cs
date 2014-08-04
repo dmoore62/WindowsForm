@@ -76,6 +76,7 @@
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.dlgDatabaseFile = new System.Windows.Forms.OpenFileDialog();
             this.dlgSaveProject = new System.Windows.Forms.SaveFileDialog();
+            this.lblImportStatus = new System.Windows.Forms.Label();
             this.tabControlMain.SuspendLayout();
             this.tabPageSummary.SuspendLayout();
             this.groupBoxProjectObjs.SuspendLayout();
@@ -106,6 +107,7 @@
             // 
             // tabPageSummary
             // 
+            this.tabPageSummary.Controls.Add(this.lblImportStatus);
             this.tabPageSummary.Controls.Add(this.BtnCreateDataBase);
             this.tabPageSummary.Controls.Add(this.label2);
             this.tabPageSummary.Controls.Add(this.lblDbError);
@@ -591,6 +593,14 @@
             this.dlgSaveProject.CreatePrompt = true;
             this.dlgSaveProject.Title = "Create New Project";
             // 
+            // lblImportStatus
+            // 
+            this.lblImportStatus.AutoSize = true;
+            this.lblImportStatus.Location = new System.Drawing.Point(691, 71);
+            this.lblImportStatus.Name = "lblImportStatus";
+            this.lblImportStatus.Size = new System.Drawing.Size(0, 17);
+            this.lblImportStatus.TabIndex = 11;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -661,6 +671,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button BtnCreateDataBase;
         private System.Windows.Forms.SaveFileDialog dlgSaveProject;
+        private System.Windows.Forms.Label lblImportStatus;
     }
 }
 
