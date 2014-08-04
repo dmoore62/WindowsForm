@@ -22,14 +22,14 @@ namespace Analytics_Solution
             bool isConnected = false;
 
             try {
-                this.conn.Open();
+                conn.Open();
                 isConnected = true;
             }
             catch (Exception ex) {
                 Debug.WriteLine(ex.Message);
             }
             finally {
-                this.conn.Close();
+                conn.Close();
             }
 
             return isConnected;
@@ -39,13 +39,13 @@ namespace Analytics_Solution
         {
             try
             {
-                this.conn.Open();
-                string sql = "CREATE TABLE test (id int, name text)";
+                conn.Open();
+                string sql = "CREATE TABLE test2 (id int, name text)";
 
                 SQLiteCommand command = new SQLiteCommand(sql, conn);
                 command.ExecuteNonQuery();
 
-                sql = "INSERT INTO test (id, name) values (1, 'alex')";
+                sql = "INSERT INTO test2 (id, name) values (1, 'alex')";
                 SQLiteCommand cmd = new SQLiteCommand(sql, conn);
                 cmd.ExecuteNonQuery();
 
@@ -57,7 +57,7 @@ namespace Analytics_Solution
             }
             finally
             {
-                this.conn.Close();
+                conn.Close();
             }
 
 
