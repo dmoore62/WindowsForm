@@ -23,3 +23,8 @@ CREATE TABLE form(
 	created TEXT not null,
 	FOREIGN KEY(a_id) REFERENCES attribute(id)
 );
+
+CREATE TABLE table_reference(
+	id INTEGER PRIMARY KEY AUTOINCREMENT not null,
+	description TEXT not null
+)
