@@ -230,12 +230,6 @@ namespace Analytics_Solution
         }
 
         public void createNewDB(String fileName) {
-            String fn = fileName;
-            createSchema(fn);
-            populateSchemaReference();
-        }
-
-        public void createSchema(String fileName) {
             String conStr = "data source=" + fileName;
             Debug.WriteLine(fileName);
             SQLiteConnection.CreateFile(fileName);
@@ -259,32 +253,6 @@ namespace Analytics_Solution
             }
         }
 
-        public void populateSchemaReference(){
-            String conStr = this.WriteConStr;
-            ProjectDB db = this.projectDb;
-            var simpleList = db.getSimpleList();
-            using (SQLiteConnection con = new SQLiteConnection(conStr)) {
-                using (SQLiteCommand cmd = new SQLiteCommand(con)) {
-                    try {
-                        con.Open();
-                        String sql = "INSERT INTO table_reference (description) VALUES (@d)";
-                        cmd.CommandText = sql;
-                        foreach (var element in simpleList) {
-                            cmd.Parameters.AddWithValue("@d", element);
-                            cmd.ExecuteNonQuery();
-                            Debug.WriteLine(element);
-                        }
-                    }
-                    catch (Exception ex) {
-                        throw new Exception("Error inserting reference: " + ex.Message);
-                    }
-                    finally {
-                        con.Close();
-                    }
-                }
-            }
-        }
-
         private void button1_Click(object sender, EventArgs e)
         {
 
@@ -292,6 +260,7 @@ namespace Analytics_Solution
 
         private void BtnCreateDataBase_Click(object sender, EventArgs e)
         {
+
             Debug.WriteLine("Clicked");
             //DBConnForm inputform = new DBConnForm(this);
             //inputform.Show();
@@ -352,6 +321,7 @@ namespace Analytics_Solution
             Label lblImport = (Label)this.lblImportStatus;
             lblImport.ForeColor = Color.Green;
             lblImport.Text = "Imported - " + this.WriteConnection;
+
         }
 
         private void createWorkingCopy() { 
