@@ -31,10 +31,9 @@
             this.components = new System.ComponentModel.Container();
             this.tabControlMain = new System.Windows.Forms.TabControl();
             this.tabPageSummary = new System.Windows.Forms.TabPage();
+            this.BtnCreateDataBase = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.lblDbError = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.tbxDatabaseName = new System.Windows.Forms.TextBox();
             this.btnUpdate = new System.Windows.Forms.Button();
             this.groupBoxProjectObjs = new System.Windows.Forms.GroupBox();
             this.lblDashboardsVal = new System.Windows.Forms.Label();
@@ -76,7 +75,6 @@
             this.tabPageDashboards = new System.Windows.Forms.TabPage();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.dlgDatabaseFile = new System.Windows.Forms.OpenFileDialog();
-            this.BtnCreateDataBase = new System.Windows.Forms.Button();
             this.tabControlMain.SuspendLayout();
             this.tabPageSummary.SuspendLayout();
             this.groupBoxProjectObjs.SuspendLayout();
@@ -110,8 +108,6 @@
             this.tabPageSummary.Controls.Add(this.BtnCreateDataBase);
             this.tabPageSummary.Controls.Add(this.label2);
             this.tabPageSummary.Controls.Add(this.lblDbError);
-            this.tabPageSummary.Controls.Add(this.label1);
-            this.tabPageSummary.Controls.Add(this.tbxDatabaseName);
             this.tabPageSummary.Controls.Add(this.btnUpdate);
             this.tabPageSummary.Controls.Add(this.groupBoxProjectObjs);
             this.tabPageSummary.Controls.Add(this.btnExportCRD);
@@ -126,13 +122,23 @@
             this.tabPageSummary.Text = "Summary";
             this.tabPageSummary.UseVisualStyleBackColor = true;
             // 
+            // BtnCreateDataBase
+            // 
+            this.BtnCreateDataBase.Location = new System.Drawing.Point(501, 61);
+            this.BtnCreateDataBase.Name = "BtnCreateDataBase";
+            this.BtnCreateDataBase.Size = new System.Drawing.Size(179, 41);
+            this.BtnCreateDataBase.TabIndex = 10;
+            this.BtnCreateDataBase.Text = "Reopen Project";
+            this.BtnCreateDataBase.UseVisualStyleBackColor = true;
+            this.BtnCreateDataBase.Click += new System.EventHandler(this.BtnCreateDataBase_Click);
+            // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(688, 139);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(0, 16);
+            this.label2.Size = new System.Drawing.Size(0, 17);
             this.label2.TabIndex = 9;
             // 
             // lblDbError
@@ -142,26 +148,8 @@
             this.lblDbError.Location = new System.Drawing.Point(688, 139);
             this.lblDbError.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblDbError.Name = "lblDbError";
-            this.lblDbError.Size = new System.Drawing.Size(0, 16);
+            this.lblDbError.Size = new System.Drawing.Size(0, 17);
             this.lblDbError.TabIndex = 8;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(501, 64);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(108, 16);
-            this.label1.TabIndex = 7;
-            this.label1.Text = "Database Name";
-            // 
-            // tbxDatabaseName
-            // 
-            this.tbxDatabaseName.Location = new System.Drawing.Point(501, 87);
-            this.tbxDatabaseName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.tbxDatabaseName.Name = "tbxDatabaseName";
-            this.tbxDatabaseName.Size = new System.Drawing.Size(363, 22);
-            this.tbxDatabaseName.TabIndex = 6;
             // 
             // btnUpdate
             // 
@@ -210,7 +198,7 @@
             this.lblDashboardsVal.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDashboardsVal.Location = new System.Drawing.Point(288, 318);
             this.lblDashboardsVal.Name = "lblDashboardsVal";
-            this.lblDashboardsVal.Size = new System.Drawing.Size(19, 20);
+            this.lblDashboardsVal.Size = new System.Drawing.Size(24, 25);
             this.lblDashboardsVal.TabIndex = 17;
             this.lblDashboardsVal.Text = "0";
             // 
@@ -221,7 +209,7 @@
             this.lblDatasetsVal.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDatasetsVal.Location = new System.Drawing.Point(288, 292);
             this.lblDatasetsVal.Name = "lblDatasetsVal";
-            this.lblDatasetsVal.Size = new System.Drawing.Size(19, 20);
+            this.lblDatasetsVal.Size = new System.Drawing.Size(24, 25);
             this.lblDatasetsVal.TabIndex = 16;
             this.lblDatasetsVal.Text = "0";
             // 
@@ -232,7 +220,7 @@
             this.lblReportsVal.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblReportsVal.Location = new System.Drawing.Point(288, 267);
             this.lblReportsVal.Name = "lblReportsVal";
-            this.lblReportsVal.Size = new System.Drawing.Size(19, 20);
+            this.lblReportsVal.Size = new System.Drawing.Size(24, 25);
             this.lblReportsVal.TabIndex = 15;
             this.lblReportsVal.Text = "0";
             // 
@@ -243,7 +231,7 @@
             this.lblMetricsVal.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblMetricsVal.Location = new System.Drawing.Point(288, 204);
             this.lblMetricsVal.Name = "lblMetricsVal";
-            this.lblMetricsVal.Size = new System.Drawing.Size(19, 20);
+            this.lblMetricsVal.Size = new System.Drawing.Size(24, 25);
             this.lblMetricsVal.TabIndex = 14;
             this.lblMetricsVal.Text = "0";
             // 
@@ -254,7 +242,7 @@
             this.lblPromptsVal.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPromptsVal.Location = new System.Drawing.Point(288, 178);
             this.lblPromptsVal.Name = "lblPromptsVal";
-            this.lblPromptsVal.Size = new System.Drawing.Size(19, 20);
+            this.lblPromptsVal.Size = new System.Drawing.Size(24, 25);
             this.lblPromptsVal.TabIndex = 13;
             this.lblPromptsVal.Text = "0";
             // 
@@ -265,7 +253,7 @@
             this.lblFiltersVal.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblFiltersVal.Location = new System.Drawing.Point(288, 154);
             this.lblFiltersVal.Name = "lblFiltersVal";
-            this.lblFiltersVal.Size = new System.Drawing.Size(19, 20);
+            this.lblFiltersVal.Size = new System.Drawing.Size(24, 25);
             this.lblFiltersVal.TabIndex = 12;
             this.lblFiltersVal.Text = "0";
             // 
@@ -276,7 +264,7 @@
             this.lblHierVal.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblHierVal.Location = new System.Drawing.Point(288, 96);
             this.lblHierVal.Name = "lblHierVal";
-            this.lblHierVal.Size = new System.Drawing.Size(19, 20);
+            this.lblHierVal.Size = new System.Drawing.Size(24, 25);
             this.lblHierVal.TabIndex = 11;
             this.lblHierVal.Text = "0";
             // 
@@ -287,7 +275,7 @@
             this.lblFactsVal.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblFactsVal.Location = new System.Drawing.Point(288, 71);
             this.lblFactsVal.Name = "lblFactsVal";
-            this.lblFactsVal.Size = new System.Drawing.Size(19, 20);
+            this.lblFactsVal.Size = new System.Drawing.Size(24, 25);
             this.lblFactsVal.TabIndex = 10;
             this.lblFactsVal.Text = "0";
             // 
@@ -298,7 +286,7 @@
             this.lblAttributesVal.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblAttributesVal.Location = new System.Drawing.Point(288, 46);
             this.lblAttributesVal.Name = "lblAttributesVal";
-            this.lblAttributesVal.Size = new System.Drawing.Size(19, 20);
+            this.lblAttributesVal.Size = new System.Drawing.Size(24, 25);
             this.lblAttributesVal.TabIndex = 9;
             this.lblAttributesVal.Text = "0";
             // 
@@ -308,7 +296,7 @@
             this.lblDashboards.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDashboards.Location = new System.Drawing.Point(5, 318);
             this.lblDashboards.Name = "lblDashboards";
-            this.lblDashboards.Size = new System.Drawing.Size(106, 20);
+            this.lblDashboards.Size = new System.Drawing.Size(128, 25);
             this.lblDashboards.TabIndex = 8;
             this.lblDashboards.Text = "Dashboards";
             // 
@@ -318,7 +306,7 @@
             this.lblDatasets.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDatasets.Location = new System.Drawing.Point(5, 292);
             this.lblDatasets.Name = "lblDatasets";
-            this.lblDatasets.Size = new System.Drawing.Size(82, 20);
+            this.lblDatasets.Size = new System.Drawing.Size(97, 25);
             this.lblDatasets.TabIndex = 7;
             this.lblDatasets.Text = "Datasets";
             // 
@@ -328,7 +316,7 @@
             this.lblReports.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblReports.Location = new System.Drawing.Point(5, 267);
             this.lblReports.Name = "lblReports";
-            this.lblReports.Size = new System.Drawing.Size(73, 20);
+            this.lblReports.Size = new System.Drawing.Size(86, 25);
             this.lblReports.TabIndex = 6;
             this.lblReports.Text = "Reports";
             // 
@@ -338,7 +326,7 @@
             this.lblMetrics.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblMetrics.Location = new System.Drawing.Point(5, 204);
             this.lblMetrics.Name = "lblMetrics";
-            this.lblMetrics.Size = new System.Drawing.Size(67, 20);
+            this.lblMetrics.Size = new System.Drawing.Size(82, 25);
             this.lblMetrics.TabIndex = 5;
             this.lblMetrics.Text = "Metrics";
             // 
@@ -348,7 +336,7 @@
             this.lblPrompts.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPrompts.Location = new System.Drawing.Point(5, 178);
             this.lblPrompts.Name = "lblPrompts";
-            this.lblPrompts.Size = new System.Drawing.Size(75, 20);
+            this.lblPrompts.Size = new System.Drawing.Size(91, 25);
             this.lblPrompts.TabIndex = 4;
             this.lblPrompts.Text = "Prompts";
             // 
@@ -358,7 +346,7 @@
             this.lblFilters.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblFilters.Location = new System.Drawing.Point(5, 154);
             this.lblFilters.Name = "lblFilters";
-            this.lblFilters.Size = new System.Drawing.Size(59, 20);
+            this.lblFilters.Size = new System.Drawing.Size(71, 25);
             this.lblFilters.TabIndex = 3;
             this.lblFilters.Text = "Filters";
             // 
@@ -368,7 +356,7 @@
             this.lblHieracrhies.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblHieracrhies.Location = new System.Drawing.Point(5, 96);
             this.lblHieracrhies.Name = "lblHieracrhies";
-            this.lblHieracrhies.Size = new System.Drawing.Size(100, 20);
+            this.lblHieracrhies.Size = new System.Drawing.Size(121, 25);
             this.lblHieracrhies.TabIndex = 2;
             this.lblHieracrhies.Text = "Hierarchies";
             // 
@@ -378,7 +366,7 @@
             this.lblFacts.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblFacts.Location = new System.Drawing.Point(5, 71);
             this.lblFacts.Name = "lblFacts";
-            this.lblFacts.Size = new System.Drawing.Size(54, 20);
+            this.lblFacts.Size = new System.Drawing.Size(65, 25);
             this.lblFacts.TabIndex = 1;
             this.lblFacts.Text = "Facts";
             // 
@@ -388,7 +376,7 @@
             this.lblAttributes.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblAttributes.Location = new System.Drawing.Point(5, 46);
             this.lblAttributes.Name = "lblAttributes";
-            this.lblAttributes.Size = new System.Drawing.Size(88, 20);
+            this.lblAttributes.Size = new System.Drawing.Size(104, 25);
             this.lblAttributes.TabIndex = 0;
             this.lblAttributes.Text = "Attributes";
             // 
@@ -419,7 +407,7 @@
             this.btnImportTables.Name = "btnImportTables";
             this.btnImportTables.Size = new System.Drawing.Size(179, 44);
             this.btnImportTables.TabIndex = 1;
-            this.btnImportTables.Text = "Import Tables";
+            this.btnImportTables.Text = "Create New Project";
             this.btnImportTables.UseVisualStyleBackColor = true;
             this.btnImportTables.Click += new System.EventHandler(this.btnImportTables_Click);
             // 
@@ -595,16 +583,7 @@
             // dlgDatabaseFile
             // 
             this.dlgDatabaseFile.FileName = "databaseFile";
-            // 
-            // BtnCreateDataBase
-            // 
-            this.BtnCreateDataBase.Location = new System.Drawing.Point(691, 185);
-            this.BtnCreateDataBase.Name = "BtnCreateDataBase";
-            this.BtnCreateDataBase.Size = new System.Drawing.Size(173, 41);
-            this.BtnCreateDataBase.TabIndex = 10;
-            this.BtnCreateDataBase.Text = "Connect To Database";
-            this.BtnCreateDataBase.UseVisualStyleBackColor = true;
-            this.BtnCreateDataBase.Click += new System.EventHandler(this.BtnCreateDataBase_Click);
+            this.dlgDatabaseFile.Title = "Select Schema for Project";
             // 
             // Form1
             // 
@@ -671,10 +650,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colAttrComments;
         private System.Windows.Forms.Button btnUpdate;
         private System.Windows.Forms.ImageList imageList1;
-        private System.Windows.Forms.TextBox tbxDatabaseName;
         private System.Windows.Forms.OpenFileDialog dlgDatabaseFile;
         private System.Windows.Forms.Label lblDbError;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button BtnCreateDataBase;
     }

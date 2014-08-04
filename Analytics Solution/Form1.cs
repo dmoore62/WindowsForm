@@ -23,6 +23,8 @@ namespace Analytics_Solution
         public XmlWriter writer;
         public String WriteConStr;
         public String WriteConnection;
+        public String projectName;
+
         public Form1()
         {
             InitializeComponent();
@@ -82,13 +84,12 @@ namespace Analytics_Solution
 
         private void btnImportTables_Click(object sender, EventArgs e)
         {
-            TextBox dataFile = (TextBox)this.tbxDatabaseName;
             Label lblError = (Label)this.lblDbError;
             String descStr;
 
             //Check for text in input
             if (dlgDatabaseFile.ShowDialog() == System.Windows.Forms.DialogResult.OK) {
-                String fileName = dataFile.Text = dlgDatabaseFile.FileName;
+                String fileName = dlgDatabaseFile.FileName;
                 String conStr = "Data Source=(LocalDB)\\v11.0;AttachDbFilename=" + fileName + ";Integrated Security=True;Connect Timeout=30";
                 //String conStr1 = Properties.Settings.Default.connection;
                 
@@ -99,6 +100,7 @@ namespace Analytics_Solution
                 SqlDataReader reader;
 
                 try {
+                    Cursor.Current = Cursors.WaitCursor;
                     con.Open();
                     String sql = "SELECT * FROM information_schema.columns";
                     cmd.Connection = con;
@@ -119,12 +121,20 @@ namespace Analytics_Solution
                 }
                 finally {
                     con.Close();
+                    Cursor.Current = Cursors.Arrow;
                 }
                 if (dataSchema.Count > 0)
                 {
                     lblDbError.ForeColor = Color.Green;
-                    lblDbError.Text = "Schema Uploaded";
+                    lblDbError.Text = "Schema Uploaded - " + fileName;
                     projectDb = new ProjectDB(dataSchema);
+                    //launch new project name window
+                    NewProjectForm newForm = new NewProjectForm(this);
+                    newForm.Show();
+                }
+                else {
+                    lblDbError.ForeColor = Color.Red;
+                    lblDbError.Text = "ERROR: Could not attach schema";
                 }
             }
         }
@@ -191,6 +201,10 @@ namespace Analytics_Solution
             finally {
                 conn.Close();
             }
+        }
+
+        public void createNewDB(String fileName) {
+            Debug.WriteLine(fileName);
         }
 
         private void button1_Click(object sender, EventArgs e)
