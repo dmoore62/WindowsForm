@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Diagnostics;
+using System.Data.SQLite;
 
 namespace Analytics_Solution
 {
@@ -99,12 +100,14 @@ namespace Analytics_Solution
             {
                 //submit form
                 Debug.WriteLine("Submitting");
+
                 AttributeRow ar = new AttributeRow(this.tbxAttrName.Text,
                                                    this.dataGridViewExpressions.RowCount - 1,
                                                    this.dataGridViewChildren.RowCount - 1,
                                                    this.dataGridViewParents.RowCount - 1,
                                                    this.tbxAttrDesc.Text);
                 formRef.addToTable(ar);
+                insertNewAttribute(ar, this);
                 this.Close();
             }
         }
@@ -112,6 +115,43 @@ namespace Analytics_Solution
         private void dataGridViewExpressions_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             Debug.WriteLine("dumb click call back");
+        }
+
+        private void insertNewAttribute(AttributeRow ar, Form2 form) {
+            String conStr = formRef.WriteConStr;
+            String connection = formRef.WriteConnection;
+            String sql;
+            int insert_id;
+
+            //SQLiteConnection.CreateFile(connection);
+            using(SQLiteConnection con = new SQLiteConnection(conStr)){
+                using(SQLiteCommand cmd = new SQLiteCommand(con)){
+                    try {
+                        con.Open();
+                        String now = DateTime.Now.ToString();
+                        sql = "INSERT INTO attribute (name, descr, created) VALUES (@name, @desc, @created)";
+                        cmd.CommandText = sql;
+                        cmd.Parameters.AddWithValue("@name", ar.name);
+                        cmd.Parameters.AddWithValue("@desc", ar.comments);
+                        cmd.Parameters.AddWithValue("@created", now);
+                        //execute insert
+                        cmd.ExecuteNonQuery();
+
+                        //get attribute insert_id
+                        sql = "SELECT last_insert_rowid()";
+                        cmd.CommandText = sql;
+
+                        insert_id = Convert.ToInt32(cmd.ExecuteScalar());
+                        Debug.WriteLine(insert_id);
+                    }
+                    catch (Exception ex) {
+                        throw new Exception("Error Inserting Attribute: " + ex.Message);
+                    }
+                    finally {
+                        con.Close();
+                    }
+                }
+            }
         }
 
     }

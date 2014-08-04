@@ -2,7 +2,6 @@ CREATE TABLE attribute(
 	id INTEGER PRIMARY KEY AUTOINCREMENT not null,
 	name TEXT not null,
 	descr TEXT not null,
-	pid INTEGER not null,
 	created TEXT not null
 );
 
