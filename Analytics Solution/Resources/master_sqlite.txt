@@ -1,0 +1,26 @@
+CREATE TABLE attribute(
+	id INTEGER PRIMARY KEY AUTOINCREMENT not null,
+	name TEXT not null,
+	descr TEXT not null,
+	pid INTEGER not null,
+	created TEXT not null
+);
+
+CREATE TABLE children(
+	id INTEGER PRIMARY KEY AUTOINCREMENT not null,
+	parent_id INTEGER not null,
+	child_id INTEGER not null,
+	created TEXT not null,
+	FOREIGN KEY(parent_id) REFERENCES attribute(id),
+	FOREIGN KEY(child_id) REFERENCES attribute(id)
+);
+
+CREATE TABLE form(
+	id INTEGER PRIMARY KEY AUTOINCREMENT not null,
+	a_id INTEGER not null,
+	name TEXT not null,
+	col TEXT not null,
+	tabl TEXT not null,
+	created TEXT not null,
+	FOREIGN KEY(a_id) REFERENCES attribute(id)
+);

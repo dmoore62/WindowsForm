@@ -134,6 +134,7 @@
     <Folder Include="AppData\" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\master_sqlite.txt" />
     <Content Include="SQL Scripts\master_script.sql" />
     <Content Include="x64\SQLite.Interop.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

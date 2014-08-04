@@ -75,6 +75,7 @@
             this.tabPageDashboards = new System.Windows.Forms.TabPage();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.dlgDatabaseFile = new System.Windows.Forms.OpenFileDialog();
+            this.dlgSaveProject = new System.Windows.Forms.SaveFileDialog();
             this.tabControlMain.SuspendLayout();
             this.tabPageSummary.SuspendLayout();
             this.groupBoxProjectObjs.SuspendLayout();
@@ -585,6 +586,11 @@
             this.dlgDatabaseFile.FileName = "databaseFile";
             this.dlgDatabaseFile.Title = "Select Schema for Project";
             // 
+            // dlgSaveProject
+            // 
+            this.dlgSaveProject.CreatePrompt = true;
+            this.dlgSaveProject.Title = "Create New Project";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -654,6 +660,7 @@
         private System.Windows.Forms.Label lblDbError;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button BtnCreateDataBase;
+        private System.Windows.Forms.SaveFileDialog dlgSaveProject;
     }
 }
 

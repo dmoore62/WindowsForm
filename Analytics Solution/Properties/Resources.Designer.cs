@@ -61,12 +61,7 @@ namespace Analytics_Solution.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to IF EXISTS(select * from sys.databases where name = &apos;pandera_metadata&apos;)
-        ///DROP DATABASE pandera_metadata
-        ///
-        ///CREATE DATABASE pandera_metadata
-        ///
-        ///USE pandera_metadata
+        ///   Looks up a localized string similar to  CREATE DATABASE pandera_metadata
         ///
         ///CREATE TABLE project(
         ///	
@@ -83,11 +78,42 @@ namespace Analytics_Solution.Properties {
         ///	id INT IDENTITY not null,
         ///	name VARCHAR(50) not null,
         ///	descr TEXT not null,
-        ///	pi [rest of string was truncated]&quot;;.
+        ///	pid INT not null,
+        ///	created DATETIME not null,
+        ///	CONSTRAINT attr_pk_id PRIMARY KEY (id),
+        ///	CONSTRAINT attr_unique_name UNIQUE (name [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string master_script {
             get {
                 return ResourceManager.GetString("master_script", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to CREATE TABLE attribute(
+        ///	id INTEGER PRIMARY KEY AUTOINCREMENT not null,
+        ///	name TEXT not null,
+        ///	descr TEXT not null,
+        ///	pid INTEGER not null,
+        ///	created TEXT not null
+        ///);
+        ///
+        ///CREATE TABLE children(
+        ///	id INTEGER PRIMARY KEY AUTOINCREMENT not null,
+        ///	parent_id INTEGER not null,
+        ///	child_id INTEGER not null,
+        ///	created TEXT not null,
+        ///	FOREIGN KEY(parent_id) REFERENCES attribute(id),
+        ///	FOREIGN KEY(child_id) REFERENCES attribute(id)
+        ///);
+        ///
+        ///CREATE TABLE form(
+        ///	id INTEGER PRIMARY KEY AUTOINCREMENT not null,
+        ///	a_id I [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string master_sqlite {
+            get {
+                return ResourceManager.GetString("master_sqlite", resourceCulture);
             }
         }
     }

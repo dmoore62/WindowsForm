@@ -129,8 +129,24 @@ namespace Analytics_Solution
                     lblDbError.Text = "Schema Uploaded - " + fileName;
                     projectDb = new ProjectDB(dataSchema);
                     //launch new project name window
-                    NewProjectForm newForm = new NewProjectForm(this);
-                    newForm.Show();
+                    //NewProjectForm newForm = new NewProjectForm(this);
+                    //newForm.Show();
+
+                    //lets try a save Dialog instead
+                    dlgSaveProject.DefaultExt = "sqlite";
+                    dlgSaveProject.AddExtension = true;
+                    dlgSaveProject.Filter = "Sqlite file|*.sqlite";
+                    dlgSaveProject.Title = "Create New Project File";
+                    dlgSaveProject.ShowDialog();
+
+                    if (dlgSaveProject.FileName != "") {
+                        String file = dlgSaveProject.FileName;
+                        Debug.WriteLine(file);
+                        Cursor.Current = Cursors.WaitCursor;
+                        this.projectName = file;
+                        createNewDB(file);
+                        Cursor.Current = Cursors.Arrow;
+                    }
                 }
                 else {
                     lblDbError.ForeColor = Color.Red;
@@ -204,7 +220,27 @@ namespace Analytics_Solution
         }
 
         public void createNewDB(String fileName) {
+            String conStr = "data source=" + fileName;
             Debug.WriteLine(fileName);
+            SQLiteConnection.CreateFile(fileName);
+            using (SQLiteConnection con = new SQLiteConnection(conStr)) {
+                using (SQLiteCommand cmd = new SQLiteCommand(con)) {
+                    try {
+                        con.Open();
+                        cmd.CommandText = Resources.master_sqlite;
+                        cmd.ExecuteNonQuery();
+                        this.WriteConnection = fileName;
+                        this.WriteConStr = conStr;
+                        this.Text = this.Text + " - " + fileName;
+                    }
+                    catch (Exception ex) {
+                        throw new Exception("Error creating DB: " + ex.Message);
+                    }
+                    finally {
+                        con.Close();
+                    }                
+                }
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)
