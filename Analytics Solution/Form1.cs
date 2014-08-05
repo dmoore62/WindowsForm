@@ -275,14 +275,19 @@ namespace Analytics_Solution
                     this.WriteConnection = dlgDatabaseFile.FileName;
                     this.WriteConStr = "data source=" + dlgDatabaseFile.FileName;
                     //reverse engineer projectDB object from datasource table
-                    populateProjectDB();
-                    createWorkingCopy();
+                    importData();
                 }
                 else {
                     ErrorForm ef = new ErrorForm("Error on Import", "An invalid file type was selected");
                     ef.Show();
                 }
             }
+        }
+
+        private void importData() {
+            populateProjectDB();
+            createWorkingCopy();
+            populateAttrGridView();
         }
 
         private void populateProjectDB() { 
@@ -334,6 +339,76 @@ namespace Analytics_Solution
 
             File.Copy(this.OriginalConnection, this.WriteConnection, true);
             Debug.WriteLine("File Copied");
+        }
+
+        private void populateAttrGridView() {
+            var rows = getAttrRows();
+            var table = this.dataGridViewAttributes;
+
+            foreach (var attr_row in rows) {
+                Debug.WriteLine("should insert row");
+                DataGridViewRow row = (DataGridViewRow)table.Rows[table.RowCount - 1].Clone();
+                row.Cells[0].Value = attr_row.name;
+                row.Cells[1].Value = attr_row.num_forms;
+                row.Cells[2].Value = attr_row.num_children;
+                row.Cells[3].Value = attr_row.num_parents;
+                row.Cells[4].Value = attr_row.comments;
+                table.Rows.Add(row);
+            }
+        }
+
+        private List<AttributeRow> getAttrRows() { 
+            //create list of attribute rows
+            String conStr = this.WriteConStr;
+            String sql;
+            List<AttributeRow> rows = new List<AttributeRow>();
+
+            using (SQLiteConnection con = new SQLiteConnection(conStr)) {
+                using (SQLiteCommand cmd = new SQLiteCommand(con)) {
+                    try
+                    {
+                        con.Open();
+                        sql = "SELECT * FROM attribute";
+                        cmd.CommandText = sql;
+
+                        using (SQLiteDataReader reader = cmd.ExecuteReader())
+                        {
+                            if (reader.HasRows)
+                            {
+                                while (reader.Read())
+                                {
+                                    int id = Convert.ToInt32(reader["id"]);
+                                    using (SQLiteCommand countCmd = new SQLiteCommand(con))
+                                    {
+                                        sql = "SELECT COUNT(id) FROM form WHERE a_id = @aid";
+                                        countCmd.CommandText = sql;
+
+                                        countCmd.Parameters.AddWithValue("@aid", id);
+                                        int count = Convert.ToInt32(countCmd.ExecuteScalar());
+
+                                        //create Attribute Row and Add
+                                        AttributeRow ar = new AttributeRow(
+                                                reader["name"].ToString(),
+                                                count, 0, 0,
+                                                reader["descr"].ToString()
+                                            );
+
+                                        rows.Add(ar);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    catch (Exception ex) {
+                        throw new Exception("Error data import: " + ex.Message);
+                    }
+                    finally {
+                        con.Clone();
+                    }
+                }
+            }
+
+            return rows;
         }
     }
 }
