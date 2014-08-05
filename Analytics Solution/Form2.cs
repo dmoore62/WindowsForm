@@ -38,6 +38,72 @@ namespace Analytics_Solution
             }
         }
 
+        public void populateAttrData(int id) {
+            //get id from row and populate form
+            Debug.WriteLine(id);
+            String sql;
+            String conStr = formRef.WriteConStr;
+            this.btnAttrAdd.Text = "Modify";
+
+            using (SQLiteConnection con = new SQLiteConnection(conStr))
+            {
+                using (SQLiteCommand cmd = new SQLiteCommand(con))
+                {
+                    try
+                    {
+                        con.Open();
+                        sql = "SELECT * FROM attribute WHERE id = @id";
+
+                        cmd.CommandText = sql;
+                        cmd.Parameters.AddWithValue("@id", id);
+
+                        using (SQLiteDataReader reader = cmd.ExecuteReader())
+                        {
+                            Debug.WriteLine("here");
+                            if (reader.HasRows) {
+                                while (reader.Read()) {
+                                    this.tbxAttrName.Text = reader["name"].ToString();
+                                    this.tbxAttrDesc.Text = reader["descr"].ToString();
+
+                                    //get the forms
+                                    sql = "SELECT * FROM form WHERE a_id = @id";
+                                    using (SQLiteCommand formCmd = new SQLiteCommand(con))
+                                    {
+                                        formCmd.CommandText = sql;
+                                        formCmd.Parameters.AddWithValue("@id", Convert.ToInt32(reader["id"]));
+                                        var table = this.dataGridViewExpressions;
+                                        using (SQLiteDataReader formReader = formCmd.ExecuteReader())
+                                        {
+                                            if (formReader.HasRows)
+                                            {
+                                                while (formReader.Read())
+                                                {
+                                                    Debug.WriteLine("should insert");
+                                                    DataGridViewRow row = (DataGridViewRow)table.Rows[table.RowCount - 1].Clone();
+                                                    row.Cells[0].Value = formReader["name"].ToString();
+                                                    row.Cells[1].Value = formReader["col"].ToString();
+                                                    row.Cells[2].Value = formReader["tabl"].ToString();
+                                                    table.Rows.Add(row);
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new Exception("Error getting attr data: " + ex.Message);
+                    }
+                    finally
+                    {
+                        con.Close();
+                    }
+                }
+            }
+        }
+
         private void expression_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
         {
             if (expressions.CurrentCell.ColumnIndex == 2 && e.Control is ComboBox) 
@@ -106,8 +172,11 @@ namespace Analytics_Solution
                                                    this.dataGridViewChildren.RowCount - 1,
                                                    this.dataGridViewParents.RowCount - 1,
                                                    this.tbxAttrDesc.Text);
+                
+                int insert_id = insertNewAttribute(ar, this);
+                ar.id = insert_id;
                 formRef.addToTable(ar);
-                insertNewAttribute(ar, this);
+                
                 this.Close();
             }
         }
@@ -117,7 +186,7 @@ namespace Analytics_Solution
             Debug.WriteLine("dumb click call back");
         }
 
-        private void insertNewAttribute(AttributeRow ar, Form2 form) {
+        private int insertNewAttribute(AttributeRow ar, Form2 form) {
             String conStr = formRef.WriteConStr;
             String connection = formRef.WriteConnection;
             String sql;
@@ -174,6 +243,8 @@ namespace Analytics_Solution
                     }
                 }
             }
+
+            return insert_id;
         }
 
     }

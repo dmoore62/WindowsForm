@@ -61,11 +61,6 @@
             this.tabPageAttributes = new System.Windows.Forms.TabPage();
             this.btnNewAttr = new System.Windows.Forms.Button();
             this.dataGridViewAttributes = new System.Windows.Forms.DataGridView();
-            this.colAttrName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colAttrNumForms = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colAttrNumChildren = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colAttrNumParents = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colAttrComments = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabPageFacts = new System.Windows.Forms.TabPage();
             this.tabPageHierarchies = new System.Windows.Forms.TabPage();
             this.tabPageFilters = new System.Windows.Forms.TabPage();
@@ -77,6 +72,12 @@
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.dlgDatabaseFile = new System.Windows.Forms.OpenFileDialog();
             this.dlgSaveProject = new System.Windows.Forms.SaveFileDialog();
+            this.colAttrName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colAttrId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colAttrNumForms = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colAttrNumChildren = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colAttrNumParents = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colAttrComments = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabControlMain.SuspendLayout();
             this.tabPageSummary.SuspendLayout();
             this.groupBoxProjectObjs.SuspendLayout();
@@ -471,6 +472,7 @@
             this.dataGridViewAttributes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewAttributes.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colAttrName,
+            this.colAttrId,
             this.colAttrNumForms,
             this.colAttrNumChildren,
             this.colAttrNumParents,
@@ -485,36 +487,7 @@
             this.dataGridViewAttributes.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.dataGridViewAttributes.Size = new System.Drawing.Size(809, 1170);
             this.dataGridViewAttributes.TabIndex = 0;
-            // 
-            // colAttrName
-            // 
-            this.colAttrName.HeaderText = "Name";
-            this.colAttrName.Name = "colAttrName";
-            this.colAttrName.ReadOnly = true;
-            // 
-            // colAttrNumForms
-            // 
-            this.colAttrNumForms.HeaderText = "# Forms";
-            this.colAttrNumForms.Name = "colAttrNumForms";
-            this.colAttrNumForms.ReadOnly = true;
-            // 
-            // colAttrNumChildren
-            // 
-            this.colAttrNumChildren.HeaderText = "# Children";
-            this.colAttrNumChildren.Name = "colAttrNumChildren";
-            this.colAttrNumChildren.ReadOnly = true;
-            // 
-            // colAttrNumParents
-            // 
-            this.colAttrNumParents.HeaderText = "# Parents";
-            this.colAttrNumParents.Name = "colAttrNumParents";
-            this.colAttrNumParents.ReadOnly = true;
-            // 
-            // colAttrComments
-            // 
-            this.colAttrComments.HeaderText = "Comments";
-            this.colAttrComments.Name = "colAttrComments";
-            this.colAttrComments.ReadOnly = true;
+            this.dataGridViewAttributes.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewAttributes_CellClick);
             // 
             // tabPageFacts
             // 
@@ -620,6 +593,41 @@
             this.dlgSaveProject.CreatePrompt = true;
             this.dlgSaveProject.Title = "Create New Project";
             // 
+            // colAttrName
+            // 
+            this.colAttrName.HeaderText = "Name";
+            this.colAttrName.Name = "colAttrName";
+            this.colAttrName.ReadOnly = true;
+            // 
+            // colAttrId
+            // 
+            this.colAttrId.HeaderText = "ID";
+            this.colAttrId.Name = "colAttrId";
+            // 
+            // colAttrNumForms
+            // 
+            this.colAttrNumForms.HeaderText = "# Forms";
+            this.colAttrNumForms.Name = "colAttrNumForms";
+            this.colAttrNumForms.ReadOnly = true;
+            // 
+            // colAttrNumChildren
+            // 
+            this.colAttrNumChildren.HeaderText = "# Children";
+            this.colAttrNumChildren.Name = "colAttrNumChildren";
+            this.colAttrNumChildren.ReadOnly = true;
+            // 
+            // colAttrNumParents
+            // 
+            this.colAttrNumParents.HeaderText = "# Parents";
+            this.colAttrNumParents.Name = "colAttrNumParents";
+            this.colAttrNumParents.ReadOnly = true;
+            // 
+            // colAttrComments
+            // 
+            this.colAttrComments.HeaderText = "Comments";
+            this.colAttrComments.Name = "colAttrComments";
+            this.colAttrComments.ReadOnly = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -678,11 +686,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colName;
         private System.Windows.Forms.DataGridView dataGridViewAttributes;
         private System.Windows.Forms.Button btnNewAttr;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colAttrName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colAttrNumForms;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colAttrNumChildren;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colAttrNumParents;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colAttrComments;
         private System.Windows.Forms.Button btnUpdate;
         private System.Windows.Forms.ImageList imageList1;
         private System.Windows.Forms.OpenFileDialog dlgDatabaseFile;
@@ -691,6 +694,12 @@
         private System.Windows.Forms.Button BtnCreateDataBase;
         private System.Windows.Forms.SaveFileDialog dlgSaveProject;
         private System.Windows.Forms.Label lblImportStatus;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colAttrName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colAttrId;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colAttrNumForms;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colAttrNumChildren;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colAttrNumParents;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colAttrComments;
     }
 }
 

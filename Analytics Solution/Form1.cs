@@ -56,10 +56,11 @@ namespace Analytics_Solution
             Debug.WriteLine(this.dataGridViewAttributes.RowCount-1);
             DataGridViewRow row = (DataGridViewRow)this.dataGridViewAttributes.Rows[this.dataGridViewAttributes.RowCount-1].Clone();
             row.Cells[0].Value = attr_row.name;
-            row.Cells[1].Value = attr_row.num_forms;
-            row.Cells[2].Value = attr_row.num_children;
-            row.Cells[3].Value = attr_row.num_parents;
-            row.Cells[4].Value = attr_row.comments;
+            row.Cells[1].Value = attr_row.id;
+            row.Cells[2].Value = attr_row.num_forms;
+            row.Cells[3].Value = attr_row.num_children;
+            row.Cells[4].Value = attr_row.num_parents;
+            row.Cells[5].Value = attr_row.comments;
             this.dataGridViewAttributes.Rows.Add(row);
         }
 
@@ -353,10 +354,11 @@ namespace Analytics_Solution
                 Debug.WriteLine("should insert row");
                 DataGridViewRow row = (DataGridViewRow)table.Rows[table.RowCount - 1].Clone();
                 row.Cells[0].Value = attr_row.name;
-                row.Cells[1].Value = attr_row.num_forms;
-                row.Cells[2].Value = attr_row.num_children;
-                row.Cells[3].Value = attr_row.num_parents;
-                row.Cells[4].Value = attr_row.comments;
+                row.Cells[1].Value = attr_row.id;
+                row.Cells[2].Value = attr_row.num_forms;
+                row.Cells[3].Value = attr_row.num_children;
+                row.Cells[4].Value = attr_row.num_parents;
+                row.Cells[5].Value = attr_row.comments;
                 table.Rows.Add(row);
             }
         }
@@ -396,6 +398,8 @@ namespace Analytics_Solution
                                                 count, 0, 0,
                                                 reader["descr"].ToString()
                                             );
+
+                                        ar.id = Convert.ToInt32(reader["id"]);
 
                                         rows.Add(ar);
                                     }
@@ -515,6 +519,25 @@ namespace Analytics_Solution
             {
                 GC.Collect();
             }
+        }
+
+        private void dataGridViewAttributes_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            Debug.WriteLine("Clicked");
+            var table = this.dataGridViewAttributes;
+
+            Debug.WriteLine(e.RowIndex);
+
+            DataGridViewRow row = table.Rows[e.RowIndex];
+            int id = Convert.ToInt32(row.Cells[1].Value);
+
+            launchModifyForm(id);
+        }
+
+        private void launchModifyForm(int id) {
+            Form2 f = new Form2(this);
+            f.populateAttrData(id);
+            f.Show();
         }
     }
 }

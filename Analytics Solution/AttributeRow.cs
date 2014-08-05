@@ -8,6 +8,7 @@ namespace Analytics_Solution
 {    
     class AttributeRow
     {
+        public int id {get; set;}
         public String name;
         public int num_forms;
         public int num_children;
