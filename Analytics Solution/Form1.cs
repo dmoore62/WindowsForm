@@ -38,9 +38,16 @@ namespace Analytics_Solution
 
         private void Form1_FormClosing(object sender, System.ComponentModel.CancelEventArgs e) {
             Debug.WriteLine("Closing");
-            if (this.OriginalConnection != "" && this.WriteConnection != "" && this.WriteConnection.EndsWith("pandera_metadata.sqlite")) {
-                File.Delete(this.WriteConnection);
-                Debug.WriteLine("File Deleted");
+            try
+            {
+                if (this.OriginalConnection != "" && this.WriteConnection != "" && this.WriteConnection.EndsWith("pandera_metadata.sqlite"))
+                {
+                    File.Delete(this.WriteConnection);
+                    Debug.WriteLine("File Deleted");
+                }
+            }
+            catch (Exception ex) {
+                Debug.WriteLine(ex.Message);
             }
         }
 
@@ -53,6 +60,8 @@ namespace Analytics_Solution
 
         internal void addToTable(AttributeRow attr_row) {
             Debug.WriteLine("Referenced Form1");
+            Label lblAttr = (Label)this.lblAttributesVal;
+            int counter;
             Debug.WriteLine(this.dataGridViewAttributes.RowCount-1);
             DataGridViewRow row = (DataGridViewRow)this.dataGridViewAttributes.Rows[this.dataGridViewAttributes.RowCount-1].Clone();
             row.Cells[0].Value = attr_row.name;
@@ -62,6 +71,10 @@ namespace Analytics_Solution
             row.Cells[4].Value = attr_row.num_parents;
             row.Cells[5].Value = attr_row.comments;
             this.dataGridViewAttributes.Rows.Add(row);
+            counter = Convert.ToInt32(lblAttr.Text);
+            counter++;
+            lblAttr.Text = counter.ToString();
+            lblAttr.Refresh();
         }
 
         internal void updateTable(AttributeRow attr_row) {
@@ -363,6 +376,8 @@ namespace Analytics_Solution
         private void populateAttrGridView() {
             var rows = getAttrRows();
             var table = this.dataGridViewAttributes;
+            Label lblAttr = (Label)this.lblAttributesVal;
+            int counter;
 
             foreach (var attr_row in rows) {
                 Debug.WriteLine("should insert row");
@@ -374,6 +389,10 @@ namespace Analytics_Solution
                 row.Cells[4].Value = attr_row.num_parents;
                 row.Cells[5].Value = attr_row.comments;
                 table.Rows.Add(row);
+                counter = Convert.ToInt32(lblAttr.Text);
+                counter++;
+                lblAttr.Text = counter.ToString();
+                lblAttr.Refresh();
             }
         }
 
