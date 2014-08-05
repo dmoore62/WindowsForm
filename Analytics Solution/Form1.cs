@@ -101,23 +101,37 @@ namespace Analytics_Solution
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
-            SqlDBhelper db = new SqlDBhelper();
-            if (db.testConnection())
-            {
-                Debug.WriteLine("Yep");
-                if (db.isEmpty())
-                {
-                    Debug.WriteLine("Empty");
-                    db.Insert_Table();
-                }
-                else
-                {
-                    Debug.WriteLine("Not Empty");
-                }
+            //save logic
+            dlgSaveProject.Filter = "sqlite|*.sqlite";
+            if (this.OriginalConnection == null) {
+                dlgSaveProject.FileName = this.WriteConnection;
+            } else {
+                dlgSaveProject.FileName = this.OriginalConnection;
             }
-            else
-            {
-                Debug.WriteLine("Nope");
+
+            dlgSaveProject.ShowDialog();
+
+            if (dlgSaveProject.FileName != "") {
+                String saveName = dlgSaveProject.FileName;
+                if (this.OriginalConnection == null) {
+                    if (saveName != this.WriteConnection) { 
+                        //renamed working file from new file
+                        File.Copy(this.WriteConnection, saveName);
+                        this.WriteConnection = saveName;
+                        this.Text = "Analytics Solution - " + this.WriteConnection;
+                        this.WriteConStr = "data source=" + saveName;
+                    }
+                } else {
+                    if (saveName != this.OriginalConnection)
+                    {
+                        File.Copy(this.WriteConnection, saveName);
+                        this.OriginalConnection = saveName;
+                        this.Text = "Analytics Solution - " + this.OriginalConnection;
+                    }
+                    else {
+                        File.Copy(this.WriteConnection, this.OriginalConnection, true);
+                    }
+                }
             }
         }
 
