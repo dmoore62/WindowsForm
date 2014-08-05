@@ -132,7 +132,7 @@ namespace Analytics_Solution
 
         private void expression_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
         {
-            if (expressions.CurrentCell.ColumnIndex == 2 && e.Control is ComboBox) 
+            if (expressions.CurrentCell.ColumnIndex == 3 && e.Control is ComboBox) 
             {
                 ComboBox comboBox = e.Control as ComboBox;
                 comboBox.SelectedIndexChanged += UpdateColumnCells;
@@ -308,24 +308,39 @@ namespace Analytics_Solution
                         //execute insert
                         cmd.ExecuteNonQuery();
 
-                        //insert all form data
+                        //update or insert all form data
                         DataGridView table = form.dataGridViewExpressions;
-                        sql = "UPDATE form SET name = @name, col = @col, tabl = @tabl, created = @created WHERE id = @id";
-                        cmd.CommandText = sql;
+                        String updateSql = "UPDATE form SET name = @name, col = @col, tabl = @tabl, created = @created WHERE id = @id";
+                        String insertSql = "INSERT INTO form (a_id, name, col, tabl, created) VALUES (@a_id, @name, @col, @tabl, @created)";
+                        
                         String colName;
                         String tblName;
                         DataGridViewRow row;
                         for (int i = 0; i < ar.num_forms; ++i)
                         {
                             row = table.Rows[i];
-                            cmd.Parameters.AddWithValue("@name", row.Cells[1].Value);
-                            colName = Convert.ToString((row.Cells[2] as DataGridViewComboBoxCell).EditedFormattedValue.ToString());
-                            cmd.Parameters.AddWithValue("@col", colName);
-                            tblName = Convert.ToString((row.Cells[3] as DataGridViewComboBoxCell).EditedFormattedValue.ToString());
-                            cmd.Parameters.AddWithValue("@tabl", tblName);
-                            cmd.Parameters.AddWithValue("@created", now);
-                            cmd.Parameters.AddWithValue("@id", row.Cells[0]);
-
+                            Debug.WriteLine(row.Cells[0].Value);
+                            if (row.Cells[0].Value != null)
+                            {
+                                cmd.CommandText = updateSql;
+                                cmd.Parameters.AddWithValue("@name", row.Cells[1].Value);
+                                colName = Convert.ToString((row.Cells[2] as DataGridViewComboBoxCell).EditedFormattedValue.ToString());
+                                cmd.Parameters.AddWithValue("@col", colName);
+                                tblName = Convert.ToString((row.Cells[3] as DataGridViewComboBoxCell).EditedFormattedValue.ToString());
+                                cmd.Parameters.AddWithValue("@tabl", tblName);
+                                cmd.Parameters.AddWithValue("@created", now);
+                                cmd.Parameters.AddWithValue("@id", row.Cells[0]);
+                            }
+                            else {
+                                cmd.CommandText = insertSql;
+                                cmd.Parameters.AddWithValue("@a_id", this.attr_id);
+                                cmd.Parameters.AddWithValue("@name", row.Cells[1].Value);
+                                colName = Convert.ToString((row.Cells[2] as DataGridViewComboBoxCell).EditedFormattedValue.ToString());
+                                cmd.Parameters.AddWithValue("@col", colName);
+                                tblName = Convert.ToString((row.Cells[3] as DataGridViewComboBoxCell).EditedFormattedValue.ToString());
+                                cmd.Parameters.AddWithValue("@tabl", tblName);
+                                cmd.Parameters.AddWithValue("@created", now);
+                            }
                             cmd.ExecuteNonQuery();
                         }
 
