@@ -13,6 +13,7 @@ using System.Data.SqlClient;
 using System.IO;
 using System.Data.SQLite;
 using Analytics_Solution.Properties;
+using Excel = Microsoft.Office.Interop.Excel;
 
 namespace Analytics_Solution
 {
@@ -37,7 +38,7 @@ namespace Analytics_Solution
 
         private void Form1_FormClosing(object sender, System.ComponentModel.CancelEventArgs e) {
             Debug.WriteLine("Closing");
-            if (this.OriginalConnection != "" && this.WriteConnection.EndsWith("pandera_metadata.sqlite")) {
+            if (this.OriginalConnection != "" && this.WriteConnection != "" && this.WriteConnection.EndsWith("pandera_metadata.sqlite")) {
                 File.Delete(this.WriteConnection);
                 Debug.WriteLine("File Deleted");
             }
@@ -445,6 +446,75 @@ namespace Analytics_Solution
             }
             lbl.Text = originalTxt;
             lbl.Refresh();
+        }
+
+        private void btnExportDoc_Click(object sender, EventArgs e)
+        {
+            dlgSaveProject.DefaultExt = "xls";
+            dlgSaveProject.AddExtension = true;
+            dlgSaveProject.Filter = "Excel Spreadsheet|*.xls";
+            dlgSaveProject.Title = "Save exported file";
+            dlgSaveProject.ShowDialog();
+
+            if (dlgSaveProject.FileName != "") { 
+                //let's try this
+                var table = this.dataGridViewAttributes;
+                Excel.Application xlApp;
+                Excel.Workbook xlWorkBook;
+                Excel.Worksheet xlWorkSheet;
+                object misValue = System.Reflection.Missing.Value;
+
+                xlApp = new Excel.Application();
+                xlWorkBook = xlApp.Workbooks.Add(misValue);
+
+                xlWorkSheet = (Excel.Worksheet)xlWorkBook.Worksheets.get_Item(1);
+
+                //put in header names
+                for (int i = 0; i < table.ColumnCount; ++i)
+                {
+                    String name = table.Columns[i].HeaderText;
+                    xlWorkSheet.Cells[1, i + 1] = name;
+                }
+
+                    for (int i = 0; i < table.RowCount; ++i)
+                    {
+                        for (int j = 0; j < table.ColumnCount; ++j)
+                        {
+                            var cell = table[j, i];
+                            xlWorkSheet.Cells[i + 2, j + 1] = cell.Value;
+                        }
+                    }
+
+                xlWorkBook.SaveAs(dlgSaveProject.FileName, Excel.XlFileFormat.xlWorkbookNormal, misValue, misValue, misValue, misValue, Excel.XlSaveAsAccessMode.xlExclusive,
+                    misValue, misValue, misValue, misValue, misValue);
+
+                xlWorkBook.Close(true, misValue, misValue);
+                xlApp.Quit();
+
+                releaseObject(xlWorkSheet);
+                releaseObject(xlWorkBook);
+                releaseObject(xlApp);
+
+                MessageBox.Show("Created!");
+            }
+        }
+
+        private void releaseObject(object obj)
+        {
+            try
+            {
+                System.Runtime.InteropServices.Marshal.ReleaseComObject(obj);
+                obj = null;
+            }
+            catch (Exception ex)
+            {
+                obj = null;
+                MessageBox.Show("Exception Occured while releasing object " + ex.ToString());
+            }
+            finally
+            {
+                GC.Collect();
+            }
         }
     }
 }

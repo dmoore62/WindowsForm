@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             this.tabControlMain = new System.Windows.Forms.TabControl();
             this.tabPageSummary = new System.Windows.Forms.TabPage();
+            this.lblImportStatus = new System.Windows.Forms.Label();
             this.BtnCreateDataBase = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.lblDbError = new System.Windows.Forms.Label();
@@ -76,7 +77,6 @@
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.dlgDatabaseFile = new System.Windows.Forms.OpenFileDialog();
             this.dlgSaveProject = new System.Windows.Forms.SaveFileDialog();
-            this.lblImportStatus = new System.Windows.Forms.Label();
             this.tabControlMain.SuspendLayout();
             this.tabPageSummary.SuspendLayout();
             this.groupBoxProjectObjs.SuspendLayout();
@@ -98,10 +98,10 @@
             this.tabControlMain.Controls.Add(this.tabPageDashboards);
             this.tabControlMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControlMain.Location = new System.Drawing.Point(0, 0);
-            this.tabControlMain.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tabControlMain.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tabControlMain.Name = "tabControlMain";
             this.tabControlMain.SelectedIndex = 0;
-            this.tabControlMain.Size = new System.Drawing.Size(1093, 523);
+            this.tabControlMain.Size = new System.Drawing.Size(820, 425);
             this.tabControlMain.SizeMode = System.Windows.Forms.TabSizeMode.FillToRight;
             this.tabControlMain.TabIndex = 0;
             // 
@@ -116,20 +116,30 @@
             this.tabPageSummary.Controls.Add(this.btnExportCRD);
             this.tabPageSummary.Controls.Add(this.btnExportDoc);
             this.tabPageSummary.Controls.Add(this.btnImportTables);
-            this.tabPageSummary.Location = new System.Drawing.Point(4, 25);
-            this.tabPageSummary.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tabPageSummary.Location = new System.Drawing.Point(4, 22);
+            this.tabPageSummary.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tabPageSummary.Name = "tabPageSummary";
-            this.tabPageSummary.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.tabPageSummary.Size = new System.Drawing.Size(1085, 494);
+            this.tabPageSummary.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabPageSummary.Size = new System.Drawing.Size(812, 399);
             this.tabPageSummary.TabIndex = 0;
             this.tabPageSummary.Text = "Summary";
             this.tabPageSummary.UseVisualStyleBackColor = true;
             // 
+            // lblImportStatus
+            // 
+            this.lblImportStatus.AutoSize = true;
+            this.lblImportStatus.Location = new System.Drawing.Point(518, 58);
+            this.lblImportStatus.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblImportStatus.Name = "lblImportStatus";
+            this.lblImportStatus.Size = new System.Drawing.Size(0, 13);
+            this.lblImportStatus.TabIndex = 11;
+            // 
             // BtnCreateDataBase
             // 
-            this.BtnCreateDataBase.Location = new System.Drawing.Point(501, 61);
+            this.BtnCreateDataBase.Location = new System.Drawing.Point(376, 50);
+            this.BtnCreateDataBase.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.BtnCreateDataBase.Name = "BtnCreateDataBase";
-            this.BtnCreateDataBase.Size = new System.Drawing.Size(179, 41);
+            this.BtnCreateDataBase.Size = new System.Drawing.Size(134, 33);
             this.BtnCreateDataBase.TabIndex = 10;
             this.BtnCreateDataBase.Text = "Reopen Project";
             this.BtnCreateDataBase.UseVisualStyleBackColor = true;
@@ -138,28 +148,26 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(688, 139);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.Location = new System.Drawing.Point(516, 113);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(0, 17);
+            this.label2.Size = new System.Drawing.Size(0, 13);
             this.label2.TabIndex = 9;
             // 
             // lblDbError
             // 
             this.lblDbError.AutoSize = true;
             this.lblDbError.ForeColor = System.Drawing.Color.Red;
-            this.lblDbError.Location = new System.Drawing.Point(688, 139);
-            this.lblDbError.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblDbError.Location = new System.Drawing.Point(516, 113);
             this.lblDbError.Name = "lblDbError";
-            this.lblDbError.Size = new System.Drawing.Size(0, 17);
+            this.lblDbError.Size = new System.Drawing.Size(0, 13);
             this.lblDbError.TabIndex = 8;
             // 
             // btnUpdate
             // 
-            this.btnUpdate.Location = new System.Drawing.Point(501, 247);
-            this.btnUpdate.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnUpdate.Location = new System.Drawing.Point(376, 201);
+            this.btnUpdate.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnUpdate.Name = "btnUpdate";
-            this.btnUpdate.Size = new System.Drawing.Size(179, 38);
+            this.btnUpdate.Size = new System.Drawing.Size(134, 31);
             this.btnUpdate.TabIndex = 5;
             this.btnUpdate.Text = "Save";
             this.btnUpdate.UseVisualStyleBackColor = true;
@@ -185,11 +193,11 @@
             this.groupBoxProjectObjs.Controls.Add(this.lblHieracrhies);
             this.groupBoxProjectObjs.Controls.Add(this.lblFacts);
             this.groupBoxProjectObjs.Controls.Add(this.lblAttributes);
-            this.groupBoxProjectObjs.Location = new System.Drawing.Point(52, 43);
-            this.groupBoxProjectObjs.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.groupBoxProjectObjs.Location = new System.Drawing.Point(39, 35);
+            this.groupBoxProjectObjs.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.groupBoxProjectObjs.Name = "groupBoxProjectObjs";
-            this.groupBoxProjectObjs.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.groupBoxProjectObjs.Size = new System.Drawing.Size(317, 396);
+            this.groupBoxProjectObjs.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBoxProjectObjs.Size = new System.Drawing.Size(238, 322);
             this.groupBoxProjectObjs.TabIndex = 4;
             this.groupBoxProjectObjs.TabStop = false;
             this.groupBoxProjectObjs.Text = "Project Objects";
@@ -199,9 +207,10 @@
             this.lblDashboardsVal.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.lblDashboardsVal.AutoSize = true;
             this.lblDashboardsVal.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDashboardsVal.Location = new System.Drawing.Point(288, 318);
+            this.lblDashboardsVal.Location = new System.Drawing.Point(216, 258);
+            this.lblDashboardsVal.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblDashboardsVal.Name = "lblDashboardsVal";
-            this.lblDashboardsVal.Size = new System.Drawing.Size(24, 25);
+            this.lblDashboardsVal.Size = new System.Drawing.Size(19, 20);
             this.lblDashboardsVal.TabIndex = 17;
             this.lblDashboardsVal.Text = "0";
             // 
@@ -210,9 +219,10 @@
             this.lblDatasetsVal.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.lblDatasetsVal.AutoSize = true;
             this.lblDatasetsVal.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDatasetsVal.Location = new System.Drawing.Point(288, 292);
+            this.lblDatasetsVal.Location = new System.Drawing.Point(216, 237);
+            this.lblDatasetsVal.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblDatasetsVal.Name = "lblDatasetsVal";
-            this.lblDatasetsVal.Size = new System.Drawing.Size(24, 25);
+            this.lblDatasetsVal.Size = new System.Drawing.Size(19, 20);
             this.lblDatasetsVal.TabIndex = 16;
             this.lblDatasetsVal.Text = "0";
             // 
@@ -221,9 +231,10 @@
             this.lblReportsVal.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.lblReportsVal.AutoSize = true;
             this.lblReportsVal.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblReportsVal.Location = new System.Drawing.Point(288, 267);
+            this.lblReportsVal.Location = new System.Drawing.Point(216, 217);
+            this.lblReportsVal.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblReportsVal.Name = "lblReportsVal";
-            this.lblReportsVal.Size = new System.Drawing.Size(24, 25);
+            this.lblReportsVal.Size = new System.Drawing.Size(19, 20);
             this.lblReportsVal.TabIndex = 15;
             this.lblReportsVal.Text = "0";
             // 
@@ -232,9 +243,10 @@
             this.lblMetricsVal.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.lblMetricsVal.AutoSize = true;
             this.lblMetricsVal.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMetricsVal.Location = new System.Drawing.Point(288, 204);
+            this.lblMetricsVal.Location = new System.Drawing.Point(216, 166);
+            this.lblMetricsVal.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblMetricsVal.Name = "lblMetricsVal";
-            this.lblMetricsVal.Size = new System.Drawing.Size(24, 25);
+            this.lblMetricsVal.Size = new System.Drawing.Size(19, 20);
             this.lblMetricsVal.TabIndex = 14;
             this.lblMetricsVal.Text = "0";
             // 
@@ -243,9 +255,10 @@
             this.lblPromptsVal.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.lblPromptsVal.AutoSize = true;
             this.lblPromptsVal.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPromptsVal.Location = new System.Drawing.Point(288, 178);
+            this.lblPromptsVal.Location = new System.Drawing.Point(216, 145);
+            this.lblPromptsVal.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblPromptsVal.Name = "lblPromptsVal";
-            this.lblPromptsVal.Size = new System.Drawing.Size(24, 25);
+            this.lblPromptsVal.Size = new System.Drawing.Size(19, 20);
             this.lblPromptsVal.TabIndex = 13;
             this.lblPromptsVal.Text = "0";
             // 
@@ -254,9 +267,10 @@
             this.lblFiltersVal.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.lblFiltersVal.AutoSize = true;
             this.lblFiltersVal.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblFiltersVal.Location = new System.Drawing.Point(288, 154);
+            this.lblFiltersVal.Location = new System.Drawing.Point(216, 125);
+            this.lblFiltersVal.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblFiltersVal.Name = "lblFiltersVal";
-            this.lblFiltersVal.Size = new System.Drawing.Size(24, 25);
+            this.lblFiltersVal.Size = new System.Drawing.Size(19, 20);
             this.lblFiltersVal.TabIndex = 12;
             this.lblFiltersVal.Text = "0";
             // 
@@ -265,9 +279,10 @@
             this.lblHierVal.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.lblHierVal.AutoSize = true;
             this.lblHierVal.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblHierVal.Location = new System.Drawing.Point(288, 96);
+            this.lblHierVal.Location = new System.Drawing.Point(216, 78);
+            this.lblHierVal.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblHierVal.Name = "lblHierVal";
-            this.lblHierVal.Size = new System.Drawing.Size(24, 25);
+            this.lblHierVal.Size = new System.Drawing.Size(19, 20);
             this.lblHierVal.TabIndex = 11;
             this.lblHierVal.Text = "0";
             // 
@@ -276,9 +291,10 @@
             this.lblFactsVal.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.lblFactsVal.AutoSize = true;
             this.lblFactsVal.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblFactsVal.Location = new System.Drawing.Point(288, 71);
+            this.lblFactsVal.Location = new System.Drawing.Point(216, 58);
+            this.lblFactsVal.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblFactsVal.Name = "lblFactsVal";
-            this.lblFactsVal.Size = new System.Drawing.Size(24, 25);
+            this.lblFactsVal.Size = new System.Drawing.Size(19, 20);
             this.lblFactsVal.TabIndex = 10;
             this.lblFactsVal.Text = "0";
             // 
@@ -287,9 +303,10 @@
             this.lblAttributesVal.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.lblAttributesVal.AutoSize = true;
             this.lblAttributesVal.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAttributesVal.Location = new System.Drawing.Point(288, 46);
+            this.lblAttributesVal.Location = new System.Drawing.Point(216, 37);
+            this.lblAttributesVal.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblAttributesVal.Name = "lblAttributesVal";
-            this.lblAttributesVal.Size = new System.Drawing.Size(24, 25);
+            this.lblAttributesVal.Size = new System.Drawing.Size(19, 20);
             this.lblAttributesVal.TabIndex = 9;
             this.lblAttributesVal.Text = "0";
             // 
@@ -297,9 +314,10 @@
             // 
             this.lblDashboards.AutoSize = true;
             this.lblDashboards.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDashboards.Location = new System.Drawing.Point(5, 318);
+            this.lblDashboards.Location = new System.Drawing.Point(4, 258);
+            this.lblDashboards.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblDashboards.Name = "lblDashboards";
-            this.lblDashboards.Size = new System.Drawing.Size(128, 25);
+            this.lblDashboards.Size = new System.Drawing.Size(106, 20);
             this.lblDashboards.TabIndex = 8;
             this.lblDashboards.Text = "Dashboards";
             // 
@@ -307,9 +325,10 @@
             // 
             this.lblDatasets.AutoSize = true;
             this.lblDatasets.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDatasets.Location = new System.Drawing.Point(5, 292);
+            this.lblDatasets.Location = new System.Drawing.Point(4, 237);
+            this.lblDatasets.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblDatasets.Name = "lblDatasets";
-            this.lblDatasets.Size = new System.Drawing.Size(97, 25);
+            this.lblDatasets.Size = new System.Drawing.Size(82, 20);
             this.lblDatasets.TabIndex = 7;
             this.lblDatasets.Text = "Datasets";
             // 
@@ -317,9 +336,10 @@
             // 
             this.lblReports.AutoSize = true;
             this.lblReports.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblReports.Location = new System.Drawing.Point(5, 267);
+            this.lblReports.Location = new System.Drawing.Point(4, 217);
+            this.lblReports.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblReports.Name = "lblReports";
-            this.lblReports.Size = new System.Drawing.Size(86, 25);
+            this.lblReports.Size = new System.Drawing.Size(73, 20);
             this.lblReports.TabIndex = 6;
             this.lblReports.Text = "Reports";
             // 
@@ -327,9 +347,10 @@
             // 
             this.lblMetrics.AutoSize = true;
             this.lblMetrics.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMetrics.Location = new System.Drawing.Point(5, 204);
+            this.lblMetrics.Location = new System.Drawing.Point(4, 166);
+            this.lblMetrics.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblMetrics.Name = "lblMetrics";
-            this.lblMetrics.Size = new System.Drawing.Size(82, 25);
+            this.lblMetrics.Size = new System.Drawing.Size(67, 20);
             this.lblMetrics.TabIndex = 5;
             this.lblMetrics.Text = "Metrics";
             // 
@@ -337,9 +358,10 @@
             // 
             this.lblPrompts.AutoSize = true;
             this.lblPrompts.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPrompts.Location = new System.Drawing.Point(5, 178);
+            this.lblPrompts.Location = new System.Drawing.Point(4, 145);
+            this.lblPrompts.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblPrompts.Name = "lblPrompts";
-            this.lblPrompts.Size = new System.Drawing.Size(91, 25);
+            this.lblPrompts.Size = new System.Drawing.Size(75, 20);
             this.lblPrompts.TabIndex = 4;
             this.lblPrompts.Text = "Prompts";
             // 
@@ -347,9 +369,10 @@
             // 
             this.lblFilters.AutoSize = true;
             this.lblFilters.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblFilters.Location = new System.Drawing.Point(5, 154);
+            this.lblFilters.Location = new System.Drawing.Point(4, 125);
+            this.lblFilters.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblFilters.Name = "lblFilters";
-            this.lblFilters.Size = new System.Drawing.Size(71, 25);
+            this.lblFilters.Size = new System.Drawing.Size(59, 20);
             this.lblFilters.TabIndex = 3;
             this.lblFilters.Text = "Filters";
             // 
@@ -357,9 +380,10 @@
             // 
             this.lblHieracrhies.AutoSize = true;
             this.lblHieracrhies.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblHieracrhies.Location = new System.Drawing.Point(5, 96);
+            this.lblHieracrhies.Location = new System.Drawing.Point(4, 78);
+            this.lblHieracrhies.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblHieracrhies.Name = "lblHieracrhies";
-            this.lblHieracrhies.Size = new System.Drawing.Size(121, 25);
+            this.lblHieracrhies.Size = new System.Drawing.Size(100, 20);
             this.lblHieracrhies.TabIndex = 2;
             this.lblHieracrhies.Text = "Hierarchies";
             // 
@@ -367,9 +391,10 @@
             // 
             this.lblFacts.AutoSize = true;
             this.lblFacts.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblFacts.Location = new System.Drawing.Point(5, 71);
+            this.lblFacts.Location = new System.Drawing.Point(4, 58);
+            this.lblFacts.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblFacts.Name = "lblFacts";
-            this.lblFacts.Size = new System.Drawing.Size(65, 25);
+            this.lblFacts.Size = new System.Drawing.Size(54, 20);
             this.lblFacts.TabIndex = 1;
             this.lblFacts.Text = "Facts";
             // 
@@ -377,38 +402,40 @@
             // 
             this.lblAttributes.AutoSize = true;
             this.lblAttributes.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAttributes.Location = new System.Drawing.Point(5, 46);
+            this.lblAttributes.Location = new System.Drawing.Point(4, 37);
+            this.lblAttributes.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblAttributes.Name = "lblAttributes";
-            this.lblAttributes.Size = new System.Drawing.Size(104, 25);
+            this.lblAttributes.Size = new System.Drawing.Size(88, 20);
             this.lblAttributes.TabIndex = 0;
             this.lblAttributes.Text = "Attributes";
             // 
             // btnExportCRD
             // 
-            this.btnExportCRD.Location = new System.Drawing.Point(501, 304);
-            this.btnExportCRD.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnExportCRD.Location = new System.Drawing.Point(376, 247);
+            this.btnExportCRD.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnExportCRD.Name = "btnExportCRD";
-            this.btnExportCRD.Size = new System.Drawing.Size(179, 42);
+            this.btnExportCRD.Size = new System.Drawing.Size(134, 34);
             this.btnExportCRD.TabIndex = 3;
             this.btnExportCRD.Text = "Export CMD MGR Script";
             this.btnExportCRD.UseVisualStyleBackColor = true;
             // 
             // btnExportDoc
             // 
-            this.btnExportDoc.Location = new System.Drawing.Point(501, 185);
-            this.btnExportDoc.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnExportDoc.Location = new System.Drawing.Point(376, 150);
+            this.btnExportDoc.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnExportDoc.Name = "btnExportDoc";
-            this.btnExportDoc.Size = new System.Drawing.Size(179, 41);
+            this.btnExportDoc.Size = new System.Drawing.Size(134, 33);
             this.btnExportDoc.TabIndex = 2;
             this.btnExportDoc.Text = "Export Documentation";
             this.btnExportDoc.UseVisualStyleBackColor = true;
+            this.btnExportDoc.Click += new System.EventHandler(this.btnExportDoc_Click);
             // 
             // btnImportTables
             // 
-            this.btnImportTables.Location = new System.Drawing.Point(501, 123);
-            this.btnImportTables.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnImportTables.Location = new System.Drawing.Point(376, 100);
+            this.btnImportTables.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnImportTables.Name = "btnImportTables";
-            this.btnImportTables.Size = new System.Drawing.Size(179, 44);
+            this.btnImportTables.Size = new System.Drawing.Size(134, 36);
             this.btnImportTables.TabIndex = 1;
             this.btnImportTables.Text = "Create New Project";
             this.btnImportTables.UseVisualStyleBackColor = true;
@@ -418,21 +445,21 @@
             // 
             this.tabPageAttributes.Controls.Add(this.btnNewAttr);
             this.tabPageAttributes.Controls.Add(this.dataGridViewAttributes);
-            this.tabPageAttributes.Location = new System.Drawing.Point(4, 25);
-            this.tabPageAttributes.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tabPageAttributes.Location = new System.Drawing.Point(4, 22);
+            this.tabPageAttributes.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tabPageAttributes.Name = "tabPageAttributes";
-            this.tabPageAttributes.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.tabPageAttributes.Size = new System.Drawing.Size(1085, 494);
+            this.tabPageAttributes.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabPageAttributes.Size = new System.Drawing.Size(812, 399);
             this.tabPageAttributes.TabIndex = 1;
             this.tabPageAttributes.Text = "Attributes";
             this.tabPageAttributes.UseVisualStyleBackColor = true;
             // 
             // btnNewAttr
             // 
-            this.btnNewAttr.Location = new System.Drawing.Point(639, 2);
-            this.btnNewAttr.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnNewAttr.Location = new System.Drawing.Point(479, 2);
+            this.btnNewAttr.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnNewAttr.Name = "btnNewAttr";
-            this.btnNewAttr.Size = new System.Drawing.Size(440, 42);
+            this.btnNewAttr.Size = new System.Drawing.Size(330, 34);
             this.btnNewAttr.TabIndex = 1;
             this.btnNewAttr.Text = "Create New Attribute";
             this.btnNewAttr.UseVisualStyleBackColor = true;
@@ -449,14 +476,14 @@
             this.colAttrNumParents,
             this.colAttrComments});
             this.dataGridViewAttributes.GridColor = System.Drawing.SystemColors.ButtonFace;
-            this.dataGridViewAttributes.Location = new System.Drawing.Point(3, 50);
-            this.dataGridViewAttributes.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.dataGridViewAttributes.Location = new System.Drawing.Point(2, 41);
+            this.dataGridViewAttributes.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.dataGridViewAttributes.Name = "dataGridViewAttributes";
             this.dataGridViewAttributes.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.dataGridViewAttributes.RowHeadersVisible = false;
             this.dataGridViewAttributes.RowTemplate.Height = 24;
             this.dataGridViewAttributes.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridViewAttributes.Size = new System.Drawing.Size(1079, 1440);
+            this.dataGridViewAttributes.Size = new System.Drawing.Size(809, 1170);
             this.dataGridViewAttributes.TabIndex = 0;
             // 
             // colAttrName
@@ -491,88 +518,88 @@
             // 
             // tabPageFacts
             // 
-            this.tabPageFacts.Location = new System.Drawing.Point(4, 25);
-            this.tabPageFacts.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tabPageFacts.Location = new System.Drawing.Point(4, 22);
+            this.tabPageFacts.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tabPageFacts.Name = "tabPageFacts";
-            this.tabPageFacts.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.tabPageFacts.Size = new System.Drawing.Size(1085, 494);
+            this.tabPageFacts.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabPageFacts.Size = new System.Drawing.Size(812, 399);
             this.tabPageFacts.TabIndex = 2;
             this.tabPageFacts.Text = "Facts";
             this.tabPageFacts.UseVisualStyleBackColor = true;
             // 
             // tabPageHierarchies
             // 
-            this.tabPageHierarchies.Location = new System.Drawing.Point(4, 25);
-            this.tabPageHierarchies.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tabPageHierarchies.Location = new System.Drawing.Point(4, 22);
+            this.tabPageHierarchies.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tabPageHierarchies.Name = "tabPageHierarchies";
-            this.tabPageHierarchies.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.tabPageHierarchies.Size = new System.Drawing.Size(1085, 494);
+            this.tabPageHierarchies.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabPageHierarchies.Size = new System.Drawing.Size(812, 399);
             this.tabPageHierarchies.TabIndex = 3;
             this.tabPageHierarchies.Text = "Hierarchies";
             this.tabPageHierarchies.UseVisualStyleBackColor = true;
             // 
             // tabPageFilters
             // 
-            this.tabPageFilters.Location = new System.Drawing.Point(4, 25);
-            this.tabPageFilters.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tabPageFilters.Location = new System.Drawing.Point(4, 22);
+            this.tabPageFilters.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tabPageFilters.Name = "tabPageFilters";
-            this.tabPageFilters.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.tabPageFilters.Size = new System.Drawing.Size(1085, 494);
+            this.tabPageFilters.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabPageFilters.Size = new System.Drawing.Size(812, 399);
             this.tabPageFilters.TabIndex = 4;
             this.tabPageFilters.Text = "Filters";
             this.tabPageFilters.UseVisualStyleBackColor = true;
             // 
             // tabPagePrompts
             // 
-            this.tabPagePrompts.Location = new System.Drawing.Point(4, 25);
-            this.tabPagePrompts.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tabPagePrompts.Location = new System.Drawing.Point(4, 22);
+            this.tabPagePrompts.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tabPagePrompts.Name = "tabPagePrompts";
-            this.tabPagePrompts.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.tabPagePrompts.Size = new System.Drawing.Size(1085, 494);
+            this.tabPagePrompts.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabPagePrompts.Size = new System.Drawing.Size(812, 399);
             this.tabPagePrompts.TabIndex = 5;
             this.tabPagePrompts.Text = "Prompts";
             this.tabPagePrompts.UseVisualStyleBackColor = true;
             // 
             // tabPageMetrics
             // 
-            this.tabPageMetrics.Location = new System.Drawing.Point(4, 25);
-            this.tabPageMetrics.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tabPageMetrics.Location = new System.Drawing.Point(4, 22);
+            this.tabPageMetrics.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tabPageMetrics.Name = "tabPageMetrics";
-            this.tabPageMetrics.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.tabPageMetrics.Size = new System.Drawing.Size(1085, 494);
+            this.tabPageMetrics.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabPageMetrics.Size = new System.Drawing.Size(812, 399);
             this.tabPageMetrics.TabIndex = 6;
             this.tabPageMetrics.Text = "Metrics";
             this.tabPageMetrics.UseVisualStyleBackColor = true;
             // 
             // tabPageReports
             // 
-            this.tabPageReports.Location = new System.Drawing.Point(4, 25);
-            this.tabPageReports.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tabPageReports.Location = new System.Drawing.Point(4, 22);
+            this.tabPageReports.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tabPageReports.Name = "tabPageReports";
-            this.tabPageReports.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.tabPageReports.Size = new System.Drawing.Size(1085, 494);
+            this.tabPageReports.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabPageReports.Size = new System.Drawing.Size(812, 399);
             this.tabPageReports.TabIndex = 7;
             this.tabPageReports.Text = "Reports";
             this.tabPageReports.UseVisualStyleBackColor = true;
             // 
             // tabPageDataSets
             // 
-            this.tabPageDataSets.Location = new System.Drawing.Point(4, 25);
-            this.tabPageDataSets.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tabPageDataSets.Location = new System.Drawing.Point(4, 22);
+            this.tabPageDataSets.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tabPageDataSets.Name = "tabPageDataSets";
-            this.tabPageDataSets.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.tabPageDataSets.Size = new System.Drawing.Size(1085, 494);
+            this.tabPageDataSets.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabPageDataSets.Size = new System.Drawing.Size(812, 399);
             this.tabPageDataSets.TabIndex = 8;
             this.tabPageDataSets.Text = "Datasets";
             this.tabPageDataSets.UseVisualStyleBackColor = true;
             // 
             // tabPageDashboards
             // 
-            this.tabPageDashboards.Location = new System.Drawing.Point(4, 25);
-            this.tabPageDashboards.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tabPageDashboards.Location = new System.Drawing.Point(4, 22);
+            this.tabPageDashboards.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tabPageDashboards.Name = "tabPageDashboards";
-            this.tabPageDashboards.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.tabPageDashboards.Size = new System.Drawing.Size(1085, 494);
+            this.tabPageDashboards.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabPageDashboards.Size = new System.Drawing.Size(812, 399);
             this.tabPageDashboards.TabIndex = 9;
             this.tabPageDashboards.Text = "Dashboards";
             this.tabPageDashboards.UseVisualStyleBackColor = true;
@@ -593,21 +620,13 @@
             this.dlgSaveProject.CreatePrompt = true;
             this.dlgSaveProject.Title = "Create New Project";
             // 
-            // lblImportStatus
-            // 
-            this.lblImportStatus.AutoSize = true;
-            this.lblImportStatus.Location = new System.Drawing.Point(691, 71);
-            this.lblImportStatus.Name = "lblImportStatus";
-            this.lblImportStatus.Size = new System.Drawing.Size(0, 17);
-            this.lblImportStatus.TabIndex = 11;
-            // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1093, 523);
+            this.ClientSize = new System.Drawing.Size(820, 425);
             this.Controls.Add(this.tabControlMain);
-            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "Form1";
             this.Text = "Analytics Solutions";
             this.tabControlMain.ResumeLayout(false);
