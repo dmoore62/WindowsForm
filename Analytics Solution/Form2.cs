@@ -15,6 +15,7 @@ namespace Analytics_Solution
     public partial class Form2 : Form
     {
         Form1 formRef = null;
+        int attr_id = 0;
         DataGridView expressions;
         public Form2(Form1 mainForm)
         {
@@ -34,6 +35,30 @@ namespace Analytics_Solution
                 expressions.DataError += new DataGridViewDataErrorEventHandler(expression_DataErrorHandler);
             }
             catch (Exception ex) {
+                Debug.WriteLine(ex.Message);
+            }
+        }
+
+        public Form2(Form1 mainForm, int refId)
+        {
+            formRef = mainForm;
+            attr_id = refId;
+            InitializeComponent();
+
+            //setup combo boxes
+            expressions = (DataGridView)this.dataGridViewExpressions;
+            DataGridViewComboBoxColumn columnBox = (DataGridViewComboBoxColumn)colExpColumn;
+            columnBox.DataSource = formRef.projectDb.getSimpleList();
+
+            DataGridViewComboBoxColumn rowBox = (DataGridViewComboBoxColumn)colExpTable;
+            rowBox.DataSource = formRef.projectDb.getTableList();
+            try
+            {
+                expressions.EditingControlShowing += new DataGridViewEditingControlShowingEventHandler(expression_EditingControlShowing);
+                expressions.DataError += new DataGridViewDataErrorEventHandler(expression_DataErrorHandler);
+            }
+            catch (Exception ex)
+            {
                 Debug.WriteLine(ex.Message);
             }
         }
@@ -80,9 +105,10 @@ namespace Analytics_Solution
                                                 {
                                                     Debug.WriteLine("should insert");
                                                     DataGridViewRow row = (DataGridViewRow)table.Rows[table.RowCount - 1].Clone();
-                                                    row.Cells[0].Value = formReader["name"].ToString();
-                                                    row.Cells[1].Value = formReader["col"].ToString();
-                                                    row.Cells[2].Value = formReader["tabl"].ToString();
+                                                    row.Cells[0].Value = Convert.ToInt32(formReader["id"]);
+                                                    row.Cells[1].Value = formReader["name"].ToString();
+                                                    row.Cells[2].Value = formReader["col"].ToString();
+                                                    row.Cells[3].Value = formReader["tabl"].ToString();
                                                     table.Rows.Add(row);
                                                 }
                                             }
@@ -117,7 +143,7 @@ namespace Analytics_Solution
             var curCell = expressions.CurrentCellAddress;
             try
             {
-                if (curCell.X == 2)
+                if (curCell.X == 3)
                 {
 
                     Debug.WriteLine("Changed");
@@ -149,6 +175,7 @@ namespace Analytics_Solution
             TextBox name = this.tbxAttrName;
             TextBox desc = this.tbxAttrDesc;
 
+
             if (name.Text.Equals("") || desc.Text.Equals(""))
             {
                 if (name.Text.Equals(""))
@@ -172,10 +199,20 @@ namespace Analytics_Solution
                                                    this.dataGridViewChildren.RowCount - 1,
                                                    this.dataGridViewParents.RowCount - 1,
                                                    this.tbxAttrDesc.Text);
-                
-                int insert_id = insertNewAttribute(ar, this);
-                ar.id = insert_id;
-                formRef.addToTable(ar);
+
+                if (this.attr_id > 0)
+                {
+                    Debug.WriteLine("updating id: " + attr_id);
+                    updateAttr(ar, this);
+                    ar.id = this.attr_id;
+                    formRef.updateTable(ar);
+                }
+                else
+                {
+                    int insert_id = insertNewAttribute(ar, this);
+                    ar.id = insert_id;
+                    formRef.addToTable(ar);
+                }
                 
                 this.Close();
             }
@@ -224,10 +261,10 @@ namespace Analytics_Solution
                         {
                             row = table.Rows[i];
                             cmd.Parameters.AddWithValue("@a_id", insert_id);
-                            cmd.Parameters.AddWithValue("@name", row.Cells[0].Value);
-                            colName = Convert.ToString((row.Cells[1] as DataGridViewComboBoxCell).EditedFormattedValue.ToString());
+                            cmd.Parameters.AddWithValue("@name", row.Cells[1].Value);
+                            colName = Convert.ToString((row.Cells[2] as DataGridViewComboBoxCell).EditedFormattedValue.ToString());
                             cmd.Parameters.AddWithValue("@col", colName);
-                            tblName = Convert.ToString((row.Cells[2] as DataGridViewComboBoxCell).EditedFormattedValue.ToString());
+                            tblName = Convert.ToString((row.Cells[3] as DataGridViewComboBoxCell).EditedFormattedValue.ToString());
                             cmd.Parameters.AddWithValue("@tabl", tblName);
                             cmd.Parameters.AddWithValue("@created", now);
 
@@ -245,6 +282,64 @@ namespace Analytics_Solution
             }
 
             return insert_id;
+        }
+       
+        private void updateAttr(AttributeRow ar, Form2 form)
+        {
+            String conStr = formRef.WriteConStr;
+            String connection = formRef.WriteConnection;
+            String sql;
+
+            //SQLiteConnection.CreateFile(connection);
+            using (SQLiteConnection con = new SQLiteConnection(conStr))
+            {
+                using (SQLiteCommand cmd = new SQLiteCommand(con))
+                {
+                    try
+                    {
+                        con.Open();
+                        String now = DateTime.Now.ToString();
+                        sql = "UPDATE attribute SET name = @name, descr = @desc, created=@created WHERE id = @id";
+                        cmd.CommandText = sql;
+                        cmd.Parameters.AddWithValue("@id", this.attr_id);
+                        cmd.Parameters.AddWithValue("@name", ar.name);
+                        cmd.Parameters.AddWithValue("@desc", ar.comments);
+                        cmd.Parameters.AddWithValue("@created", now);
+                        //execute insert
+                        cmd.ExecuteNonQuery();
+
+                        //insert all form data
+                        DataGridView table = form.dataGridViewExpressions;
+                        sql = "UPDATE form SET name = @name, col = @col, tabl = @tabl, created = @created WHERE id = @id";
+                        cmd.CommandText = sql;
+                        String colName;
+                        String tblName;
+                        DataGridViewRow row;
+                        for (int i = 0; i < ar.num_forms; ++i)
+                        {
+                            row = table.Rows[i];
+                            cmd.Parameters.AddWithValue("@name", row.Cells[1].Value);
+                            colName = Convert.ToString((row.Cells[2] as DataGridViewComboBoxCell).EditedFormattedValue.ToString());
+                            cmd.Parameters.AddWithValue("@col", colName);
+                            tblName = Convert.ToString((row.Cells[3] as DataGridViewComboBoxCell).EditedFormattedValue.ToString());
+                            cmd.Parameters.AddWithValue("@tabl", tblName);
+                            cmd.Parameters.AddWithValue("@created", now);
+                            cmd.Parameters.AddWithValue("@id", row.Cells[0]);
+
+                            cmd.ExecuteNonQuery();
+                        }
+
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new Exception("Error Inserting Attribute: " + ex.Message);
+                    }
+                    finally
+                    {
+                        con.Close();
+                    }
+                }
+            }
         }
 
     }

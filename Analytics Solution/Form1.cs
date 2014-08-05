@@ -64,6 +64,20 @@ namespace Analytics_Solution
             this.dataGridViewAttributes.Rows.Add(row);
         }
 
+        internal void updateTable(AttributeRow attr_row) {
+            var table = this.dataGridViewAttributes;
+            for (int i = 0; i < table.RowCount; ++i) {
+                if (Convert.ToInt32(table.Rows[i].Cells[1].Value) == attr_row.id) {
+                    DataGridViewRow row = table.Rows[i];
+                    row.Cells[0].Value = attr_row.name;
+                    row.Cells[2].Value = attr_row.num_forms;
+                    row.Cells[3].Value = attr_row.num_children;
+                    row.Cells[4].Value = attr_row.num_parents;
+                    row.Cells[5].Value = attr_row.comments;
+                }
+            }
+        }
+
         public void CreateSimpleXML() { 
         
         }
@@ -535,7 +549,7 @@ namespace Analytics_Solution
         }
 
         private void launchModifyForm(int id) {
-            Form2 f = new Form2(this);
+            Form2 f = new Form2(this, id);
             f.populateAttrData(id);
             f.Show();
         }
